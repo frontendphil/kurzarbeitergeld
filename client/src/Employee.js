@@ -1,6 +1,5 @@
 import React from "react";
 
-import Netto from "./Netto";
 import TextInput from "./TextInput";
 import AfterTaxValue from "./AfterTaxValue";
 
