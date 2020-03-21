@@ -101,6 +101,7 @@ function Employee({ value, onChange }) {
         <AfterTaxValue
           beforeTax={value.regularSalaryBeforeTax}
           taxClass={value.taxClass}
+          hasChildren={value.hasChildren}
         />
       </td>
       <td className="p-2 border">
@@ -121,6 +122,7 @@ function Employee({ value, onChange }) {
         <AfterTaxValue
           beforeTax={value.currentSalaryBeforeTax}
           taxClass={value.taxClass}
+          hasChildren={value.hasChildren}
         />
       </td>
     </>
