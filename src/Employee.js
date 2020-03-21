@@ -63,12 +63,11 @@ function Employee({ value, onChange, onStateChange }) {
       <td className="p-2 border">
         <Select
           value={value.taxClass}
-          onComplete={({ target }) => {
-            const newState = {
+          onChange={({ target }) => {
+            onChange({
               ...value,
               taxClass: target.value
-            };
-            onChange(newState);
+            });
           }}
         >
           <option value="1">I</option>

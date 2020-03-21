@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import EmployeeData from "./EmployeeData";
 import General from "./General";
 import Submit from "./Submit";
+import Summary from "./Summary";
 import Title1 from "./Title1";
 
 function App() {
   const [formData, setFormData] = useState({
     general: {},
-    employees: {}
+    employees: []
   });
 
   return (
@@ -25,6 +26,8 @@ function App() {
       />
 
       <EmployeeData onStateChange={setFormData} />
+
+      <Summary formData={formData} />
 
       <Submit formData={formData} />
     </div>
