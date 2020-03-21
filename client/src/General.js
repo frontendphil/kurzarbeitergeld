@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import BankDetails from "./BankDetails";
+import Card from "./Card";
 import TextInput from "./TextInput";
 
 const defaultCompany = {
@@ -15,7 +16,7 @@ function General() {
   const [company, setCompany] = useState(defaultCompany);
 
   return (
-    <form>
+    <Card title="Stammdaten">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <div className=" mb-6">
@@ -109,7 +110,7 @@ function General() {
           onChange={bankDetails => setCompany({ ...company, ...bankDetails })}
         />
       </div>
-    </form>
+    </Card>
   );
 }
 

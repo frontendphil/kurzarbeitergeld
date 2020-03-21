@@ -24,9 +24,7 @@ function App() {
     <div className="font-sans flex flex-col items-center">
       <h1 className="mb-8 text-5xl">Antrag auf Kurzarbeitergeld</h1>
 
-      <Card title="Stammdaten">
-        <General />
-      </Card>
+      <General />
 
       <Card title="Mitarbeiterdaten">
         <table className="table-auto">
@@ -39,8 +37,6 @@ function App() {
               <th className="p-4">Anzahl der ausgefallenen Stunden</th>
               <th className="p-4">Soll-Entgelt</th>
               <th className="p-4">Ist-Entgelt</th>
-              <th className="p-4">Soll-Entgelt (netto)</th>
-              <th className="p-4">Ist-Entgelt (netto)</th>
             </tr>
           </thead>
           <tbody>

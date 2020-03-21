@@ -1,7 +1,8 @@
 import React from "react";
 
-import TextInput from "./TextInput";
 import AfterTaxValue from "./AfterTaxValue";
+import Netto from "./Netto";
+import TextInput from "./TextInput";
 
 function Employee({ value, onChange }) {
   return (
@@ -79,9 +80,9 @@ function Employee({ value, onChange }) {
         />
       </td>
       <td className="p-2 border">
-        <div className="flex">
+        <div className="mb-4">
           <TextInput
-            placeholder="Brutto"
+            label="Brutto"
             value={value.regularSalaryBeforeTax}
             onChange={regularSalaryBeforeTax =>
               onChange({
@@ -91,24 +92,18 @@ function Employee({ value, onChange }) {
               })
             }
           />
-
-          <TextInput
-            placeholder="Netto"
-            value={value.regularSalaryAfterTax}
-            onChange={regularSalaryAfterTax =>
-              onChange({
-                ...value,
-
-                regularSalaryAfterTax
-              })
-            }
-          />
         </div>
+
+        <AfterTaxValue
+          beforeTax={value.regularSalaryBeforeTax}
+          category={1}
+          taxClass={value.taxClass}
+        />
       </td>
       <td className="p-2 border">
-        <div className="flex">
+        <div className="mb-4">
           <TextInput
-            placeholder="Brutto"
+            label="Brutto"
             value={value.currentSalaryBeforeTax}
             onChange={currentSalaryBeforeTax =>
               onChange({
@@ -118,25 +113,13 @@ function Employee({ value, onChange }) {
               })
             }
           />
-
-          <TextInput
-            placeholder="Netto"
-            value={value.currentSalaryAfterTax}
-            onChange={currentSalaryAfterTax =>
-              onChange({
-                ...value,
-
-                currentSalaryAfterTax
-              })
-            }
-          />
         </div>
-      </td>
-      <td className="p-2 border">
-        <AfterTaxValue beforeTax={value.regularSalary} hasChildren={value.hasChildren} taxClass={value.taxClass}></AfterTaxValue>
-      </td>
-      <td className="p-2 border">
-        <AfterTaxValue beforeTax={value.currentSalary} hasChildren={value.hasChildren} taxClass={value.taxClass}></AfterTaxValue>
+
+        <AfterTaxValue
+          beforeTax={value.currentSalaryBeforeTax}
+          category={1}
+          taxClass={value.taxClass}
+        />
       </td>
     </tr>
   );
