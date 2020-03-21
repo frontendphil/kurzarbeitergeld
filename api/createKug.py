@@ -48,7 +48,7 @@ class handler(BaseHTTPRequestHandler):
         with open(TEMPLATE_PATH, "rb") as file:
             self.wfile.write(file.read())
 
-        self.send_response(200)
+        self.send_response(200, 'SUCCESS')
         self.send_header('Content-Type', 'application/octet-stream')
         self.send_header('Content-Disposition',
                          'attachment; filename="kug.pdf"')
