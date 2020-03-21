@@ -1,45 +1,43 @@
-gE/AAgAw/zkT;AA Bezirk;"Organisations.
-einheit / Empfänger";Anschrift;PLZ;Ort
-"Regionaldirektion 
-Baden-Württemberg";;;Hölderlinstr. 36;70174;Stuttgart
-Jobcenter Heidenheim;Aalen;;Theodor-Heuss-Str. 1;89518;Heidenheim
-Jobcenter Ostalbkreis;Aalen;;Hopfenstr. 65;73430;Aalen
-Jobcenter Landkreis Sigmaringen;Balingen;;Fidelis-Graf-Str. 2;72488;Sigmaringen
-Jobcenter Zollernalbkreis;Balingen;;Stingstr. 17;72336;Balingen
-Jobcenter Breisgau-Hochschwarzwald;Freiburg;;Lehener Str. 77;79106;Freiburg
-Jobcenter Landkreis Emmendingen;Freiburg;;Freiburger Str. 20;79312;Emmendigen
-Jobcenter Freiburg ;Freiburg;;Lehener Str. 77;79106;Freiburg
-Jobcenter Landkreis Esslingen;Göppingen;;Uhlandstr. 1;73734;Esslingen
-Jobcenter Landkreis Göppingen;Göppingen;;Mörikestr. 15;73033;Göppingen
-Jobcenter Stadt Heidelberg;Heidelberg;;Speyerer Str. 6/1;69115;Heildelberg
-Jobcenter Rhein-Neckar-Kreis ;Heidelberg;;Czerny - Ring 22 / 11;69115;Heidelberg
-Jobcenter Stadt Heilbronn ;Heilbronn;;Rosenbergstr. 59;74072;Heilbronn
-Jobcenter Landkreis Karlsruhe;Karlsruhe;;Brauerstr. 10;76125;Karlsruhe
-Jobcenter Landkreis Konstanz ;Konstanz;;Konzilstr. 9;78462;Konstanz
-kein Jobcenter;Konstanz;;Benediktinerplatz 1;78467;Konstanz
-Jobcenter Landkreis Lörrach ;Lörrach;;Brombacher Str. 2;79539;Lörrach
-Jobcenter Waldshut-Tiengen;Lörrach;;Waldtorstr. 14;79761;Waldshut-Tiengen
-Jobcenter Landkreis Ludwigsburg;Ludwigsburg;;Hindenburgstr. 44;71638;Ludwigsburg
-Jobcenter Mannheim;Mannheim;;Ifflandstr. 2-6;68161;Mannheim
-Jobcenter Ortenaukreis;Offenburg;;Lange Str. 51;77652;Offenburg
-Jobcenter Enzkreis;Pforzheim;;Zahringerallee 3;75177;Pforzheim           
-Jobcenter Baden-Baden;Rastatt;;Gewerbepark Cite´ 1;76532;Baden-Baden
-Jobcenter Landkreis Rastatt;Rastatt;;Karlstr. 18;76437;Rastatt
-Jobcenter Landkreis Biberach;Ravensburg;;Rollinstr. 9;88400;Biberach
-AA Ravensburg und LK Ravensburg;Ravensburg;;Sauterlauterstr. 34;88250;Weingarten
-Landkreis Ravensburg -       Auslag.Wangen;Ravensburg;;Holbeinweg 2;88239;Wangen
-Jobcenter Bodenseekreis;Ravensburg;;Albrechtstraße 75;88045;Friedrichshafen
-Jobcenter Landkreis Reutlingen;Reutlingen;;Albstr. 83;72764;Reutlingen
-Jobcenter Landkreis Tübingen;Reutlingen;;Schleifmühleweg 68;72070;Tübingen
-Jobcenter Landkreis Rottweil;Rottweil;;Steig 27;78628;Rottweil
-Jobcenter Tuttlingen;Rottweil;;Bahnhofstr. 100;78532;Tuttlingen
-Jobcenter Hohenlohekreis;Schwäbisch Hall;;Würzburger Str. 30;74653;Künzelsau
-Jobcenter Landkreis Schwäbisch Hall;Schwäbisch Hall;;Bahnhofstr. 18;74523;Schwäbisch Hall
-Jobcenter Böblingen;Stuttgart;;Calwerstr. 6;71034;Böblingen
-Jobcenter Stuttgart;Stuttgart;;Rosensteinstr. 11;70191;Stuttgart
-Jobcenter Main-Tauber ;Tauberbischofsheim;;Pestalozziallee 17;97941;Tauberbischofsheim
-Jobcenter Neckar-Odenwald-Kreis;Tauberbischofsheim;;Renzstr. 14;74821;Mosbach
-Jobcenter Alb-Donau;Ulm;;Wichernstr. 5;89073;Ulm
-Jobcenter Ulm;Ulm;;Schwambergerstr. 1;89073;Ulm
-Landkreis Schwarzwald-Baar-Kreis - AA Villingen-Schwenningen;Villingen-Schwenningen;;Lantwattenstr. 2;78050;Villingen-Schwenningen
-Jobcenter Rems-Murr;Waiblingen;;Mayenner Str. 60;71332;Waiblingen
+gE/AAgAw/zkT,AA Bezirk,"Organisationseinheit / Empfänger",Anschrift,PLZ,Ort
+"Regionaldirektion Baden-Württemberg",,,Hölderlinstr. 36,70174,Stuttgart
+Jobcenter Heidenheim,Aalen,,Theodor-Heuss-Str. 1,89518,Heidenheim
+Jobcenter Ostalbkreis,Aalen,,Hopfenstr. 65,73430,Aalen
+Jobcenter Landkreis Sigmaringen,Balingen,,Fidelis-Graf-Str. 2,72488,Sigmaringen
+Jobcenter Zollernalbkreis,Balingen,,Stingstr. 17,72336,Balingen
+Jobcenter Breisgau-Hochschwarzwald,Freiburg,,Lehener Str. 77,79106,Freiburg
+Jobcenter Landkreis Emmendingen,Freiburg,,Freiburger Str. 20,79312,Emmendigen
+Jobcenter Freiburg ,Freiburg,,Lehener Str. 77,79106,Freiburg
+Jobcenter Landkreis Esslingen,Göppingen,,Uhlandstr. 1,73734,Esslingen
+Jobcenter Landkreis Göppingen,Göppingen,,Mörikestr. 15,73033,Göppingen
+Jobcenter Stadt Heidelberg,Heidelberg,,Speyerer Str. 6/1,69115,Heildelberg
+Jobcenter Rhein-Neckar-Kreis ,Heidelberg,,Czerny - Ring 22 / 11,69115,Heidelberg
+Jobcenter Stadt Heilbronn ,Heilbronn,,Rosenbergstr. 59,74072,Heilbronn
+Jobcenter Landkreis Karlsruhe,Karlsruhe,,Brauerstr. 10,76125,Karlsruhe
+Jobcenter Landkreis Konstanz ,Konstanz,,Konzilstr. 9,78462,Konstanz
+kein Jobcenter,Konstanz,,Benediktinerplatz 1,78467,Konstanz
+Jobcenter Landkreis Lörrach ,Lörrach,,Brombacher Str. 2,79539,Lörrach
+Jobcenter Waldshut-Tiengen,Lörrach,,Waldtorstr. 14,79761,Waldshut-Tiengen
+Jobcenter Landkreis Ludwigsburg,Ludwigsburg,,Hindenburgstr. 44,71638,Ludwigsburg
+Jobcenter Mannheim,Mannheim,,Ifflandstr. 2-6,68161,Mannheim
+Jobcenter Ortenaukreis,Offenburg,,Lange Str. 51,77652,Offenburg
+Jobcenter Enzkreis,Pforzheim,,Zahringerallee 3,75177,Pforzheim           
+Jobcenter Baden-Baden,Rastatt,,Gewerbepark Cite´ 1,76532,Baden-Baden
+Jobcenter Landkreis Rastatt,Rastatt,,Karlstr. 18,76437,Rastatt
+Jobcenter Landkreis Biberach,Ravensburg,,Rollinstr. 9,88400,Biberach
+AA Ravensburg und LK Ravensburg,Ravensburg,,Sauterlauterstr. 34,88250,Weingarten
+Landkreis Ravensburg -       Auslag.Wangen,Ravensburg,,Holbeinweg 2,88239,Wangen
+Jobcenter Bodenseekreis,Ravensburg,,Albrechtstraße 75,88045,Friedrichshafen
+Jobcenter Landkreis Reutlingen,Reutlingen,,Albstr. 83,72764,Reutlingen
+Jobcenter Landkreis Tübingen,Reutlingen,,Schleifmühleweg 68,72070,Tübingen
+Jobcenter Landkreis Rottweil,Rottweil,,Steig 27,78628,Rottweil
+Jobcenter Tuttlingen,Rottweil,,Bahnhofstr. 100,78532,Tuttlingen
+Jobcenter Hohenlohekreis,Schwäbisch Hall,,Würzburger Str. 30,74653,Künzelsau
+Jobcenter Landkreis Schwäbisch Hall,Schwäbisch Hall,,Bahnhofstr. 18,74523,Schwäbisch Hall
+Jobcenter Böblingen,Stuttgart,,Calwerstr. 6,71034,Böblingen
+Jobcenter Stuttgart,Stuttgart,,Rosensteinstr. 11,70191,Stuttgart
+Jobcenter Main-Tauber ,Tauberbischofsheim,,Pestalozziallee 17,97941,Tauberbischofsheim
+Jobcenter Neckar-Odenwald-Kreis,Tauberbischofsheim,,Renzstr. 14,74821,Mosbach
+Jobcenter Alb-Donau,Ulm,,Wichernstr. 5,89073,Ulm
+Jobcenter Ulm,Ulm,,Schwambergerstr. 1,89073,Ulm
+Landkreis Schwarzwald-Baar-Kreis - AA Villingen-Schwenningen,Villingen-Schwenningen,,Lantwattenstr. 2,78050,Villingen-Schwenningen
+Jobcenter Rems-Murr,Waiblingen,,Mayenner Str. 60,71332,Waiblingen
