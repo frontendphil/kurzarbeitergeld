@@ -134,10 +134,10 @@ function Employee({ value, onChange }) {
         </div>
       </td>
       <td className="p-2 border">
-        <AfterTaxValue beforeTax={value.regularSalary} category={1} taxClass={value.taxClass}></AfterTaxValue>
+        <AfterTaxValue beforeTax={value.regularSalary} hasChildren={value.hasChildren} taxClass={value.taxClass}></AfterTaxValue>
       </td>
       <td className="p-2 border">
-        <AfterTaxValue beforeTax={value.currentSalary} category={1} taxClass={value.taxClass}></AfterTaxValue>
+        <AfterTaxValue beforeTax={value.currentSalary} hasChildren={value.hasChildren} taxClass={value.taxClass}></AfterTaxValue>
       </td>
     </tr>
   );

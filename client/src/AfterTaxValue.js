@@ -3,18 +3,18 @@ import React from "react";
 import TextInput from "./TextInput";
 import AfterTaxTable from './after-tax-values';
 
-function AfterTaxValue({ beforeTax, category, taxClass }) {
-  let afterTaxValue = calculateValueAfterTax(beforeTax, category, taxClass);
+function AfterTaxValue({ beforeTax, hasChildren, taxClass }) {
+  let afterTaxValue = calculateValueAfterTax(beforeTax, hasChildren, taxClass);
   return <TextInput disabled value={afterTaxValue} />;
 }
 
-function calculateValueAfterTax(beforeTax, category, taxClass) {
+function calculateValueAfterTax(beforeTax, hasChildren, taxClass) {
   let beforeTaxValue = parseFloat(beforeTax);
   let entry = AfterTaxTable.find((entry) => entry.min <= beforeTaxValue && beforeTaxValue <= entry.max)
 
   if (entry == null) { return ""; }
 
-  let key = `leistungssatz_${category}`
+  let key = hasChildren ? "leistungssatz_1" : "leistungssatz_2";
   return entry[key][taxClass - 1];
 }
 
