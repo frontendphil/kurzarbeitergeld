@@ -61,9 +61,9 @@ function EmployeeData({ onStateChange }) {
         </tbody>
       </table>
 
-      <div className="m-8 flex justify-center">
+      <div className="mt-8 mb-2 flex justify-end">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
           onClick={() => {
             setEmployees(currentEmployees => [
               ...currentEmployees,
