@@ -1,12 +1,9 @@
-const { readFileSync } = require('fs')
 const { join } = require('path')
 const csv=require('csvtojson')
 
 module.exports = async (req, res) => {
 
-    const csvFile = readFileSync(join(__dirname, 'agencies-data.csv'), 'utf8');
-
-    const agencies= await csv().fromFile(csvFile);
+    const agencies = await csv().fromFile(join(__dirname, 'agencies-data.csv'));
 
     console.log(`QueryString: ${req.query}`)
     
