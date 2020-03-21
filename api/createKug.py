@@ -52,4 +52,7 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'application/octet-stream')
         self.send_header('Content-Disposition',
                          'attachment; filename="kug.pdf"')
+
+        self.end_headers()
+
         return
