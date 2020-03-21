@@ -46,7 +46,7 @@ class handler(BaseHTTPRequestHandler):
         # pdfrw.PdfWriter().write(self.wfile, template_pdf)
 
         with open(TEMPLATE_PATH, "rb") as file:
-            self.wfile(file.read())
+            self.wfile.write(file.read())
 
         self.send_response(200)
         self.send_header('Content-Type', 'application/octet-stream')
