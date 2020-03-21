@@ -1,36 +1,37 @@
 import React from "react";
 
+import TextInput from "./TextInput";
+
 function Employee({ value, onChange }) {
   return (
     <tr>
-      <td>
-        <input
-          type="text"
+      <td className="p-2 border">
+        <TextInput
           value={value.name}
-          onChange={({ target }) =>
+          onChange={name =>
             onChange({
               ...value,
 
-              name: target.value
+              name
             })
           }
         />
       </td>
-      <td>
-        <input
-          type="text"
+      <td className="p-2 border">
+        <TextInput
           value={value.insuranceNumber}
-          onChange={({ target }) =>
+          onChange={insuranceNumber =>
             onChange({
               ...value,
 
-              insuranceNumber: target.value
+              insuranceNumber
             })
           }
         />
       </td>
-      <td>
+      <td className="p-2 border">
         <select
+          className="block w-full border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none"
           value={value.taxClass}
           onChange={({ target }) =>
             onChange({
@@ -48,7 +49,7 @@ function Employee({ value, onChange }) {
           <option value="6">VI</option>
         </select>
       </td>
-      <td>
+      <td className="p-2 border">
         <input
           type="checkbox"
           checked={value.hasChildren}
@@ -61,41 +62,38 @@ function Employee({ value, onChange }) {
           }
         />
       </td>
-      <td>
-        <input
-          type="text"
+      <td className="p-2 border">
+        <TextInput
           value={value.lostHours}
-          onChange={({ target }) =>
+          onChange={lostHours =>
             onChange({
               ...value,
 
-              lostHours: target.value
+              lostHours
             })
           }
         />
       </td>
-      <td>
-        <input
-          type="text"
+      <td className="p-2 border">
+        <TextInput
           value={value.regularSalary}
-          onChange={({ target }) =>
+          onChange={regularSalary =>
             onChange({
               ...value,
 
-              regularSalary: target.value
+              regularSalary
             })
           }
         />
       </td>
-      <td>
-        <input
-          type="text"
+      <td className="p-2 border">
+        <TextInput
           value={value.currentSalary}
-          onChange={({ target }) =>
+          onChange={currentSalary =>
             onChange({
               ...value,
 
-              currentSalary: target.value
+              currentSalary
             })
           }
         />
