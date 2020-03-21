@@ -43,13 +43,13 @@ class handler(BaseHTTPRequestHandler):
                         pdfrw.PdfDict(V='{}'.format('HAAALLLOOOO'))
                     )
 
-        pdfrw.PdfWriter().write(self.wfile, template_pdf)
-
         self.send_response(200, 'SUCCESS')
         self.send_header('Content-Type', 'application/octet-stream')
         self.send_header('Content-Disposition',
                          'attachment; filename="kug.pdf"')
 
         self.end_headers()
+
+        pdfrw.PdfWriter().write(self.wfile, template_pdf)
 
         return
