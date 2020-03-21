@@ -35,7 +35,7 @@ function Employee({ value, onChange, onStateChange }) {
             <TextInput
               label="Vor- und Nachname"
               value={value.name}
-              onChange={name =>
+              onComplete={name =>
                 onChange({
                   ...value,
 
@@ -49,7 +49,7 @@ function Employee({ value, onChange, onStateChange }) {
             <TextInput
               label="Versicherungsnummer"
               value={value.insuranceNumber}
-              onChange={insuranceNumber =>
+              onComplete={insuranceNumber =>
                 onChange({
                   ...value,
 
@@ -63,7 +63,7 @@ function Employee({ value, onChange, onStateChange }) {
       <td className="p-2 border">
         <Select
           value={value.taxClass}
-          onChange={({ target }) => {
+          onComplete={({ target }) => {
             const newState = {
               ...value,
               taxClass: target.value
@@ -96,7 +96,7 @@ function Employee({ value, onChange, onStateChange }) {
         <TextInput
           placeholder="Anzahl Stunden"
           value={value.lostHours}
-          onChange={lostHours =>
+          onComplete={lostHours =>
             onChange({
               ...value,
 
@@ -110,7 +110,7 @@ function Employee({ value, onChange, onStateChange }) {
           <TextInput
             label="Brutto"
             value={value.regularSalaryBeforeTax}
-            onChange={regularSalaryBeforeTax =>
+            onComplete={regularSalaryBeforeTax =>
               onChange({
                 ...value,
 
@@ -132,7 +132,7 @@ function Employee({ value, onChange, onStateChange }) {
           <TextInput
             label="Brutto"
             value={value.currentSalaryBeforeTax}
-            onChange={currentSalaryBeforeTax =>
+            onComplete={currentSalaryBeforeTax =>
               onChange({
                 ...value,
 

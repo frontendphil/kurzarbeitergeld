@@ -13,28 +13,28 @@ function BankDetails({ onChange }) {
         <TextInput
           label="IBAN"
           value={bankData.iban}
-          onChange={iban => setBankData({ ...bankData, iban })}
-          onBlur={() => {
-            if (bankData.iban) {
-              fetch(
-                `https://openiban.com/validate/${bankData.iban}?getBIC=true`
-              ).then(async response => {
-                const json = await response.json();
+          onComplete={iban => {
+            if (iban) {
+              fetch(`https://openiban.com/validate/${iban}?getBIC=true`).then(
+                async response => {
+                  const json = await response.json();
 
-                if (json.valid) {
-                  const newBankData = {
-                    ...bankData,
-                    bankName: json.bankData.name,
-                    bic: json.bankData.bic
-                  };
+                  if (json.valid) {
+                    const newBankData = {
+                      ...bankData,
+                      iban,
+                      bankName: json.bankData.name,
+                      bic: json.bankData.bic
+                    };
 
-                  setBankData(newBankData);
-                  onChange(newBankData);
-                } else {
-                  setBankData(defaultBankData);
-                  onChange(defaultBankData);
+                    setBankData(newBankData);
+                    onChange(newBankData);
+                  } else {
+                    setBankData(defaultBankData);
+                    onChange(defaultBankData);
+                  }
                 }
-              });
+              );
             }
           }}
         />

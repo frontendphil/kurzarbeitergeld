@@ -42,8 +42,7 @@ function General({ onStateChange }) {
             <TextInput
               label="Firmenname"
               value={company.name}
-              onChange={name => setCompany({ ...company, name })}
-              onBlur={() => onStateChange(company)}
+              onComplete={name => onStateChange({ ...company, name })}
             />
           </div>
 
@@ -53,10 +52,9 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Straße"
                   value={company.streetName}
-                  onChange={streetName =>
-                    setCompany({ ...company, streetName })
+                  onComplete={streetName =>
+                    onStateChange({ ...company, streetName })
                   }
-                  onBlur={() => onStateChange(company)}
                 />
               </div>
             </div>
@@ -65,10 +63,9 @@ function General({ onStateChange }) {
               <TextInput
                 label="Nr."
                 value={company.streetNumber}
-                onChange={streetNumber =>
-                  setCompany({ ...company, streetNumber })
+                onComplete={streetNumber =>
+                  onStateChange({ ...company, streetNumber })
                 }
-                onBlur={() => onStateChange(company)}
               />
             </div>
           </div>
@@ -79,8 +76,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Postleitzahl"
                   value={company.zipCode}
-                  onChange={zipCode => setCompany({ ...company, zipCode })}
-                  onBlur={() => onStateChange(company)}
+                  onComplete={zipCode => onStateChange({ ...company, zipCode })}
                 />
               </div>
             </div>
@@ -89,8 +85,7 @@ function General({ onStateChange }) {
               <TextInput
                 label="Stadt"
                 value={company.city}
-                onChange={city => setCompany({ ...company, city })}
-                onBlur={() => onStateChange(company)}
+                onComplete={city => onStateChange({ ...company, city })}
               />
             </div>
           </div>
@@ -103,8 +98,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Telefon"
                   value={company.phone}
-                  onChange={phone => setCompany({ ...company, phone })}
-                  onBlur={() => onStateChange(company)}
+                  onComplete={phone => onStateChange({ ...company, phone })}
                 />
               </div>
             </div>
@@ -113,8 +107,7 @@ function General({ onStateChange }) {
               <TextInput
                 label="Telefax"
                 value={company.fax}
-                onChange={fax => setCompany({ ...company, fax })}
-                onBlur={() => onStateChange(company)}
+                onComplete={fax => onStateChange({ ...company, fax })}
               />
             </div>
           </div>
@@ -123,8 +116,7 @@ function General({ onStateChange }) {
             <TextInput
               label="Email"
               value={company.email}
-              onChange={email => setCompany({ ...company, email })}
-              onBlur={() => onStateChange(company)}
+              onComplete={email => onStateChange({ ...company, email })}
             />
           </div>
         </div>
@@ -134,7 +126,9 @@ function General({ onStateChange }) {
 
       <div className="w-1/2">
         <BankDetails
-          onChange={bankDetails => setCompany({ ...company, ...bankDetails })}
+          onChange={bankDetails =>
+            onStateChange({ ...company, ...bankDetails })
+          }
           // TODO
         />
       </div>
