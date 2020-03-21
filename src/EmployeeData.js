@@ -15,7 +15,7 @@ const defaultEmployee = {
   currentSalaryAfterTax: ""
 };
 
-function EmployeeData() {
+function EmployeeData({onStateChange}) {
   const [employees, setEmployees] = useState([]);
   const [currentEmployee, setCurrentEmployee] = useState(defaultEmployee);
 
@@ -44,12 +44,13 @@ function EmployeeData() {
                     ...employees.slice(index + 1)
                   ]);
                 }}
+                onStateChange={() => onStateChange([...employees, currentEmployee])}
               />
             </tr>
           ))}
 
           <tr className={employees.length % 2 !== 0 ? "bg-gray-100" : ""}>
-            <Employee value={currentEmployee} onChange={setCurrentEmployee} />
+            <Employee value={currentEmployee} onChange={setCurrentEmployee} onStateChange={() => onStateChange([...employees, currentEmployee])} />
           </tr>
         </tbody>
       </table>

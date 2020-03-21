@@ -4,7 +4,7 @@ import AfterTaxValue from "./AfterTaxValue";
 import Select from "./Select";
 import TextInput from "./TextInput";
 
-function Employee({ value, onChange }) {
+function Employee({ value, onChange, onStateChange }) {
   return (
     <>
       <td className="p-2 border">
@@ -20,6 +20,7 @@ function Employee({ value, onChange }) {
                   name
                 })
               }
+              onBlur={() => onStateChange(value)}
             />
           </div>
 
@@ -34,6 +35,7 @@ function Employee({ value, onChange }) {
                   insuranceNumber
                 })
               }
+              onBlur={() => onStateChange(value)}
             />
           </div>
         </div>
@@ -41,13 +43,14 @@ function Employee({ value, onChange }) {
       <td className="p-2 border">
         <Select
           value={value.taxClass}
-          onChange={({ target }) =>
-            onChange({
+          onChange={({ target }) => {
+            const newState = {
               ...value,
-
               taxClass: target.value
-            })
-          }
+            };
+            onChange(newState);
+            onStateChange(newState);
+          }}
         >
           <option value="1">I</option>
           <option value="2">II</option>
@@ -68,6 +71,7 @@ function Employee({ value, onChange }) {
               hasChildren: target.checked
             })
           }
+          onBlur={() => onStateChange(value)}
         />
       </td>
       <td className="p-2 border">
@@ -81,6 +85,7 @@ function Employee({ value, onChange }) {
               lostHours
             })
           }
+          onBlur={() => onStateChange(value)}
         />
       </td>
       <td className="p-2 border">
@@ -95,6 +100,7 @@ function Employee({ value, onChange }) {
                 regularSalaryBeforeTax
               })
             }
+            onBlur={() => onStateChange(value)}
           />
         </div>
 
@@ -117,6 +123,7 @@ function Employee({ value, onChange }) {
                 currentSalaryBeforeTax
               })
             }
+            onBlur={() => onStateChange(value)}
           />
         </div>
 

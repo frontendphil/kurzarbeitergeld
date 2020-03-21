@@ -13,7 +13,7 @@ const defaultCompany = {
   email: ""
 };
 
-function General() {
+function General({onStateChange}) {
   const [company, setCompany] = useState(defaultCompany);
 
   return (
@@ -42,6 +42,7 @@ function General() {
               label="Firmenname"
               value={company.name}
               onChange={name => setCompany({ ...company, name })}
+              onBlur={() => onStateChange(company)}
             />
           </div>
 
@@ -54,7 +55,8 @@ function General() {
                   onChange={streetName =>
                     setCompany({ ...company, streetName })
                   }
-                />
+                  onBlur={() => onStateChange(company)}
+              />
               </div>
             </div>
 
@@ -65,6 +67,8 @@ function General() {
                 onChange={streetNumber =>
                   setCompany({ ...company, streetNumber })
                 }
+                onBlur={() => onStateChange(company)}
+
               />
             </div>
           </div>
@@ -76,6 +80,7 @@ function General() {
                   label="Postleitzahl"
                   value={company.zipCode}
                   onChange={zipCode => setCompany({ ...company, zipCode })}
+                  onBlur={() => onStateChange(company)}
                 />
               </div>
             </div>
@@ -85,6 +90,7 @@ function General() {
                 label="Stadt"
                 value={company.city}
                 onChange={city => setCompany({ ...company, city })}
+                onBlur={() => onStateChange(company)}
               />
             </div>
           </div>
@@ -98,6 +104,7 @@ function General() {
                   label="Telefon"
                   value={company.phone}
                   onChange={phone => setCompany({ ...company, phone })}
+                  onBlur={() => onStateChange(company)}
                 />
               </div>
             </div>
@@ -107,6 +114,7 @@ function General() {
                 label="Telefax"
                 value={company.fax}
                 onChange={fax => setCompany({ ...company, fax })}
+                onBlur={() => onStateChange(company)}
               />
             </div>
           </div>
@@ -116,6 +124,7 @@ function General() {
               label="Email"
               value={company.email}
               onChange={email => setCompany({ ...company, email })}
+              onBlur={() => onStateChange(company)}
             />
           </div>
         </div>
@@ -126,6 +135,7 @@ function General() {
       <div className="w-1/2">
         <BankDetails
           onChange={bankDetails => setCompany({ ...company, ...bankDetails })}
+          // TODO
         />
       </div>
     </Card>
