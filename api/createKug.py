@@ -7,64 +7,41 @@ import pdfrw
 TEMPLATE_PATH = './pdf-templates/antrag-kug.pdf'
 OUTPUT_PATH = 'kug.pdf'
 
-requestBody = {
-    "employees": [
-        {
-            "currentSalaryAfterTax": "",
-            "currentSalaryBeforeTax": "",
-            "hasChildren": False,
-            "insuranceNumber": "",
-            "lostHours": "",
-            "name": "",
-            "regularSalaryAfterTax": "",
-            "regularSalaryBeforeTax": "",
-            "taxClass": 1
-        }
-    ],
-    "general": {
-        "agency": {
-            "AA Bezirk": "Potsdam",
-            "Anschrift": "Horstweg 102-108",
-            "Bezeichnung": "Jobcenter Potsdam",
-            "Ort": "Potsdam",
-            "PLZ": "14478"
-        },
-        "bankName": "",
-        "bic": "",
-        "city": "Berlin",
-        "email": "",
-        "iban": "",
-        "name": "Test Corp.",
-        "streetName": "Huh",
-        "streetNumber": "32",
-        "zipCode": "43528"
-    }
-}
 
-data_dict = {
-    'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
-    '4-stellige Able': '1234', # Ableitungs-Nr
-    '8-stellige Betr': 'BA123423', # Betriebsnummer
-    'Postleitzahl un': requestBody["general"]["agency"]["Anschrift"] + ", " + requestBody["general"]["agency"]["Ort"], # Agentur für Arbeit
-    'Bezeichnung und': requestBody["general"]["name"] + requestBody["general"]["city"], # Arbeitgeber
-    'Anschrift der L': '', # Lohnabrechnungsstelle
-    'Telefon-Nr.': '0123456789',
-    'Telefax-Nr.': '0123456789',
-    'E-Mail': requestBody["general"]["email"],
-    'BIC': requestBody["general"]["bic"],
-    'IBAN': requestBody["general"]["iban"],
-    'Kreditinstitut': requestBody["general"]["bankName"],
-    # 'Korrektur-Leist': '',
-    # 'Zutreffendes bi': '',
-    'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
-    'Gesamtzahl der ': '100',  # Beschäftigten
-    'männlich': 'x',
-    'weiblich': 'x',
-    'Summe Soll-Entg': '2000',
-    'Summe Ist-Entge': '1500',
-    'Abrechnungsmona': 'März',
-    'Kug in Höhe von': '1000',
-}
+# requestBody = {
+#     "employees": [
+#         {
+#             "currentSalaryAfterTax": "",
+#             "currentSalaryBeforeTax": "",
+#             "hasChildren": False,
+#             "insuranceNumber": "",
+#             "lostHours": "",
+#             "name": "",
+#             "regularSalaryAfterTax": "",
+#             "regularSalaryBeforeTax": "",
+#             "taxClass": 1
+#         }
+#     ],
+#     "general": {
+#         "agency": {
+#             "AA Bezirk": "Potsdam",
+#             "Anschrift": "Horstweg 102-108",
+#             "Bezeichnung": "Jobcenter Potsdam",
+#             "Ort": "Potsdam",
+#             "PLZ": "14478"
+#         },
+#         "bankName": "",
+#         "bic": "",
+#         "city": "Berlin",
+#         "email": "",
+#         "iban": "",
+#         "name": "Test Corp.",
+#         "streetName": "Huh",
+#         "streetNumber": "32",
+#         "zipCode": "43528"
+#     }
+# }
+
 ANNOT_KEY = '/Annots'
 ANNOT_FIELD_KEY = '/TU'
 ANNOT_VAL_KEY = '/V'
@@ -74,14 +51,35 @@ WIDGET_SUBTYPE_KEY = '/Widget'
 
 
 class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        response = os.listdir(".")
-        print(response)
-        self.wfile.write(response.encode())
-        return
 
     def do_POST(self):
+
+        requestBody = self.rfile.read()
+
+        data_dict = {
+            'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
+            '4-stellige Able': '1234', # Ableitungs-Nr
+            '8-stellige Betr': 'BA123423', # Betriebsnummer
+            'Postleitzahl un': requestBody["general"]["agency"]["Anschrift"] + ", " + requestBody["general"]["agency"]["Ort"], # Agentur für Arbeit
+            'Bezeichnung und': requestBody["general"]["name"] + requestBody["general"]["city"], # Arbeitgeber
+            'Anschrift der L': '', # Lohnabrechnungsstelle
+            'Telefon-Nr.': '0123456789',
+            'Telefax-Nr.': '0123456789',
+            'E-Mail': requestBody["general"]["email"],
+            'BIC': requestBody["general"]["bic"],
+            'IBAN': requestBody["general"]["iban"],
+            'Kreditinstitut': requestBody["general"]["bankName"],
+            # 'Korrektur-Leist': '',
+            # 'Zutreffendes bi': '',
+            'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
+            'Gesamtzahl der ': '100',  # Beschäftigten
+            'männlich': 'x',
+            'weiblich': 'x',
+            'Summe Soll-Entg': '2000',
+            'Summe Ist-Entge': '1500',
+            'Abrechnungsmona': 'März',
+            'Kug in Höhe von': '1000',
+        }
 
         template_pdf = pdfrw.PdfReader(TEMPLATE_PATH)
 
