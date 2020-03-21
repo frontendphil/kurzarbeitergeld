@@ -24,8 +24,7 @@ function EmployeeData() {
       <table className="w-full table-auto">
         <thead>
           <tr>
-            <th className="p-4">Name Mitarbeiter</th>
-            <th className="p-4">Rentenversicherungsnummer</th>
+            <th className="p-4">Mitarbeiter</th>
             <th className="p-4">Steuerklasse</th>
             <th className="p-4">Kinder (Ja/Nein)</th>
             <th className="p-4">Anzahl der ausgefallenen Stunden</th>
@@ -35,20 +34,23 @@ function EmployeeData() {
         </thead>
         <tbody>
           {employees.map((employee, index) => (
-            <Employee
-              key={index}
-              value={employee}
-              onChange={changedEmployee => {
-                setEmployees([
-                  ...employees.slice(0, index),
-                  changedEmployee,
-                  ...employees.slice(index + 1)
-                ]);
-              }}
-            />
+            <tr key={index} className={index % 2 !== 0 ? "bg-gray-100" : ""}>
+              <Employee
+                value={employee}
+                onChange={changedEmployee => {
+                  setEmployees([
+                    ...employees.slice(0, index),
+                    changedEmployee,
+                    ...employees.slice(index + 1)
+                  ]);
+                }}
+              />
+            </tr>
           ))}
 
-          <Employee value={currentEmployee} onChange={setCurrentEmployee} />
+          <tr className={employees.length % 2 !== 0 ? "bg-gray-100" : ""}>
+            <Employee value={currentEmployee} onChange={setCurrentEmployee} />
+          </tr>
         </tbody>
       </table>
 

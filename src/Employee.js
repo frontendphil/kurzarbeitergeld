@@ -1,40 +1,45 @@
 import React from "react";
 
 import AfterTaxValue from "./AfterTaxValue";
+import Select from "./Select";
 import TextInput from "./TextInput";
 
 function Employee({ value, onChange }) {
   return (
-    <tr>
+    <>
       <td className="p-2 border">
-        <TextInput
-          placeholder="Vor- und Nachname"
-          value={value.name}
-          onChange={name =>
-            onChange({
-              ...value,
+        <div className="flex justify-stretch">
+          <div className="mr-4 flex-1">
+            <TextInput
+              label="Vor- und Nachname"
+              value={value.name}
+              onChange={name =>
+                onChange({
+                  ...value,
 
-              name
-            })
-          }
-        />
+                  name
+                })
+              }
+            />
+          </div>
+
+          <div className="flex-1">
+            <TextInput
+              label="Versicherungsnummer"
+              value={value.insuranceNumber}
+              onChange={insuranceNumber =>
+                onChange({
+                  ...value,
+
+                  insuranceNumber
+                })
+              }
+            />
+          </div>
+        </div>
       </td>
       <td className="p-2 border">
-        <TextInput
-          placeholder="Versicherungsnummer"
-          value={value.insuranceNumber}
-          onChange={insuranceNumber =>
-            onChange({
-              ...value,
-
-              insuranceNumber
-            })
-          }
-        />
-      </td>
-      <td className="p-2 border">
-        <select
-          className="block w-full border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none"
+        <Select
           value={value.taxClass}
           onChange={({ target }) =>
             onChange({
@@ -50,7 +55,7 @@ function Employee({ value, onChange }) {
           <option value="4">IV</option>
           <option value="5">V</option>
           <option value="6">VI</option>
-        </select>
+        </Select>
       </td>
       <td className="p-2 border">
         <input
@@ -118,7 +123,7 @@ function Employee({ value, onChange }) {
           taxClass={value.taxClass}
         />
       </td>
-    </tr>
+    </>
   );
 }
 
