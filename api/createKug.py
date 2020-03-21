@@ -4,7 +4,7 @@ from http.server import BaseHTTPRequestHandler
 import os
 import pdfrw
 
-TEMPLATE_PATH = '../pdf-templates/antrag-kug.pdf'
+TEMPLATE_PATH = './pdf-templates/antrag-kug.pdf'
 OUTPUT_PATH = 'kug.pdf'
 
 data_dict = {}
