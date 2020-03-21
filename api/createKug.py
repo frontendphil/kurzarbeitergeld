@@ -26,28 +26,30 @@ class handler(BaseHTTPRequestHandler):
         return
 
     def do_POST(self):
-        print(os.listdir("."))
 
-        template_pdf = pdfrw.PdfReader(TEMPLATE_PATH)
+        # template_pdf = pdfrw.PdfReader(TEMPLATE_PATH)
 
-        # print template_pdf.pages[0]
-        annotations = template_pdf.pages[0][ANNOT_KEY]
-        for annotation in annotations:
-            # print annotation
+        # # print template_pdf.pages[0]
+        # annotations = template_pdf.pages[0][ANNOT_KEY]
+        # for annotation in annotations:
+        #     # print annotation
 
-            if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
-                if annotation[ANNOT_FIELD_KEY]:
-                    key = annotation[ANNOT_FIELD_KEY][1:-1]
+        #     if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+        #         if annotation[ANNOT_FIELD_KEY]:
+        #             key = annotation[ANNOT_FIELD_KEY][1:-1]
 
-                    # if key in data_dict.keys():
-                    annotation.update(
-                        pdfrw.PdfDict(V='{}'.format('HAAALLLOOOO'))
-                    )
+        #             # if key in data_dict.keys():
+        #             annotation.update(
+        #                 pdfrw.PdfDict(V='{}'.format('HAAALLLOOOO'))
+        #             )
 
-        pdfrw.PdfWriter().write(self.wfile, template_pdf)
+        # pdfrw.PdfWriter().write(self.wfile, template_pdf)
+
+        with open(TEMPLATE_PATH, "rb") as file:
+            self.wfile(file.read())
 
         self.send_response(200)
-        self.send_header('Content-type', 'application/pdf')
+        self.send_header('Content-Type', 'application/octet-stream')
         self.send_header('Content-Disposition',
                          'attachment; filename="kug.pdf"')
         return
