@@ -44,9 +44,9 @@ class handler(BaseHTTPRequestHandler):
                     )
 
         self.send_response(200, 'SUCCESS')
-        self.send_header('Content-Type', 'application/octet-stream')
+        self.send_header('Content-Type', 'application/pdf')
         self.send_header('Content-Disposition',
-                         'attachment; filename="kug.pdf"')
+                         'attachment; filename="kug-antrag.pdf"')
 
         self.end_headers()
 

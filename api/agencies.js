@@ -4,8 +4,6 @@ const csv=require('csvtojson')
 module.exports = async (req, res) => {
 
     const agencies = await csv().fromFile(join(__dirname, 'agencies-data.csv'));
-
-    console.log(`QueryString: ${req.query}`)
     
     const filterString = req.query.filter
     const zipcodeFilterString = req.query.zipcode
