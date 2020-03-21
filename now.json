@@ -2,6 +2,9 @@
   "functions": {
     "api/createKug.py": {
       "includeFiles": "pdf-templates/**"
+    },
+    "api/agencies.js": {
+      "includeFiles": "jobcenter-csv/agencies.csv"
     }
   }
 }
