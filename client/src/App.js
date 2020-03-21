@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 
+import Card from "./Card";
 import Employee from "./Employee";
+import General from "./General";
 
 const defaultEmployee = {
   name: "",
   insuranceNumber: "",
   taxClass: 1,
   hasChildren: false,
-  lostHours: 0,
-  regularSalary: 0,
-  currentSalary: 0
+  lostHours: "",
+  regularSalaryBeforeTax: "",
+  regularSalaryAfterTax: "",
+  currentSalaryBeforeTax: "",
+  currentSalaryAfterTax: ""
 };
 
 function App() {
@@ -18,10 +22,14 @@ function App() {
 
   return (
     <div className="font-sans flex flex-col items-center">
-      <h1 className="m-8 text-5xl">Antrag auf Kurzarbeitergeld</h1>
+      <h1 className="mb-8 text-5xl">Antrag auf Kurzarbeitergeld</h1>
 
-      <div className="rounded overflow-hidden shadow-lg bg-white p-4">
-        <table class="table-auto">
+      <Card title="Stammdaten">
+        <General />
+      </Card>
+
+      <Card title="Mitarbeiterdaten">
+        <table className="table-auto">
           <thead>
             <tr>
               <th className="p-4">Name Mitarbeiter</th>
@@ -69,7 +77,7 @@ function App() {
             Zeile hinzufügen
           </button>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

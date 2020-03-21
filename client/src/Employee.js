@@ -1,5 +1,6 @@
 import React from "react";
 
+import Netto from "./Netto";
 import TextInput from "./TextInput";
 import AfterTaxValue from "./AfterTaxValue";
 
@@ -8,6 +9,7 @@ function Employee({ value, onChange }) {
     <tr>
       <td className="p-2 border">
         <TextInput
+          placeholder="Vor- und Nachname"
           value={value.name}
           onChange={name =>
             onChange({
@@ -20,6 +22,7 @@ function Employee({ value, onChange }) {
       </td>
       <td className="p-2 border">
         <TextInput
+          placeholder="Versicherungsnummer"
           value={value.insuranceNumber}
           onChange={insuranceNumber =>
             onChange({
@@ -65,6 +68,7 @@ function Employee({ value, onChange }) {
       </td>
       <td className="p-2 border">
         <TextInput
+          placeholder="Anzahl Stunden"
           value={value.lostHours}
           onChange={lostHours =>
             onChange({
@@ -76,28 +80,58 @@ function Employee({ value, onChange }) {
         />
       </td>
       <td className="p-2 border">
-        <TextInput
-          value={value.regularSalary}
-          onChange={regularSalary =>
-            onChange({
-              ...value,
+        <div className="flex">
+          <TextInput
+            placeholder="Brutto"
+            value={value.regularSalaryBeforeTax}
+            onChange={regularSalaryBeforeTax =>
+              onChange({
+                ...value,
 
-              regularSalary
-            })
-          }
-        />
+                regularSalaryBeforeTax
+              })
+            }
+          />
+
+          <TextInput
+            placeholder="Netto"
+            value={value.regularSalaryAfterTax}
+            onChange={regularSalaryAfterTax =>
+              onChange({
+                ...value,
+
+                regularSalaryAfterTax
+              })
+            }
+          />
+        </div>
       </td>
       <td className="p-2 border">
-        <TextInput
-          value={value.currentSalary}
-          onChange={currentSalary =>
-            onChange({
-              ...value,
+        <div className="flex">
+          <TextInput
+            placeholder="Brutto"
+            value={value.currentSalaryBeforeTax}
+            onChange={currentSalaryBeforeTax =>
+              onChange({
+                ...value,
 
-              currentSalary
-            })
-          }
-        />
+                currentSalaryBeforeTax
+              })
+            }
+          />
+
+          <TextInput
+            placeholder="Netto"
+            value={value.currentSalaryAfterTax}
+            onChange={currentSalaryAfterTax =>
+              onChange({
+                ...value,
+
+                currentSalaryAfterTax
+              })
+            }
+          />
+        </div>
       </td>
       <td className="p-2 border">
         <AfterTaxValue beforeTax={value.regularSalary} category={1} taxClass={value.taxClass}></AfterTaxValue>
