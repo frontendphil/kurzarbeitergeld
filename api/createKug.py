@@ -18,8 +18,16 @@ WIDGET_SUBTYPE_KEY = '/Widget'
 
 
 class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        response = os.listdir(".")
+        print(response)
+        self.wfile.write(response.encode())
+        return 
 
     def do_POST(self):
+        print(os.listdir("."))
+
         template_pdf = pdfrw.PdfReader(TEMPLATE_PATH)
 
         # print template_pdf.pages[0]
@@ -37,3 +45,4 @@ class handler(BaseHTTPRequestHandler):
                     )
 
         pdfrw.PdfWriter().write(OUTPUT_PATH, template_pdf)
+
