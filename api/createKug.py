@@ -48,4 +48,6 @@ class handler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.send_header('Content-type', 'application/pdf')
+        self.send_header('Content-Disposition',
+                         'attachment; filename="kug.pdf"')
         return
