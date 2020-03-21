@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import EmployeeData from "./EmployeeData";
 import General from "./General";
 import Submit from "./Submit";
+import Title1 from "./Title1";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -11,8 +12,8 @@ function App() {
   });
 
   return (
-    <div className="font-sans flex flex-col items-center">
-      <h1 className="mb-8 text-5xl">Antrag auf Kurzarbeitergeld</h1>
+    <div className="font-sans flex flex-col">
+      <Title1>Antrag auf Kurzarbeitergeld</Title1>
 
       <General
         onStateChange={general =>

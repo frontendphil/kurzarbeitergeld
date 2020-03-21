@@ -4,6 +4,7 @@ import AgencySelect from "./AgencySelect";
 import BankDetails from "./BankDetails";
 import Card from "./Card";
 import TextInput from "./TextInput";
+import Title3 from "./Title3";
 
 const defaultCompany = {
   name: "",
@@ -18,7 +19,7 @@ function General({ onStateChange }) {
 
   return (
     <Card>
-      <h3 className="mb-2 text-3xl">Jobcenter</h3>
+      <Title3>Jobcenter</Title3>
 
       <div className="mb-6">
         <AgencySelect
@@ -33,7 +34,7 @@ function General({ onStateChange }) {
         />
       </div>
 
-      <h3 className="mb-2 text-3xl">Firmendaten</h3>
+      <Title3>Firmendaten</Title3>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
@@ -129,7 +130,7 @@ function General({ onStateChange }) {
         </div>
       </div>
 
-      <h3 className="mb-2 text-3xl">Bankverbindung</h3>
+      <Title3>Bankverbindung</Title3>
 
       <div className="w-1/2">
         <BankDetails
