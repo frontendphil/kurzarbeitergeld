@@ -1,30 +1,28 @@
-gE/AAgAw/zkT;AA Bezirk;Organisationseinheit / Empfänger;Anschrift;PLZ;Ort
-Regionaldirektion Hessen;;;Saonestr. 2-4;60528;Frankfurt a.M.
-Hersfeld-Rotenburg, Landkreis;Bad Hersfeld;;Friedloserstr. 12;36251;Bad Hersfeld
-Jobcenter Werra-Meißner;Bad Hersfeld;;Fuldaer Str. 6;37269;Eschwege
-Neue Wege Kreis Bergstraße;Darmstadt;;Walther- Rathenau- Str. 1;64646;Heppenheim
-Jobcenter Darmstadt;Darmstadt;;Groß-Gerauer-Weg 3;64295;Darmstadt
-Jobcenter;Darmstadt;;Jägertorstraße 207 Trakt 7;64289;Darmstadt
-Kommunales Jobcenter;Darmstadt;;Wilhelm-Seipp-Str. 4;64521;Groß-Gerau
-Jobcenter;Darmstadt;;Michelstädter Str. 12;64711;Erbach
-Jobcenter Frankfurt am Main;Frankfurt am Main;;Hainer Weg 44;60599;Frankfurt a.M. 
-Jobcenter;Fulda;;Robert-Kircher-Str. 24;36037;Fulda
-Jobcenter Gießen;Gießen;;Nordanlage 60;35390;Gießen
-Jobcenter;Gießen;;Goldhelg 20;36341;Lauterbach
-Jobcenter Wetteraukreis;Gießen;;Schulze-Delitzsch-Str. 1;61169;Friedberg
-Jobcenter Landkreis Kassel;Kassel;;Ständeplatz 23;34117;Kassel
-"Arbeitsförderung 
-Landkreis Kassel";Kassel;;Kurfürstenstr. 19;34466;Wolfhagen
-"Jobcenter
-Landkreis Kassel";Kassel;;Ständeplatz 23;34117;Kassel
-Jobcenter Stadt Kassel;Kassel;;Grüner Weg 46 o. Rathaus, Obere Königstr. 8;34117;Kassel
-Arbeitsförderung Schwalm-Eder;Kassel;;Schladenweg 29;34560;Fritzlar
-Arbeitsförderung Schwalm-Eder;Kassel;;Schwarzenberger Weg 31;34212;Melsungen
-Arbeitsförderung Werra-Meissner-Kreis;Kassel;;Walburger Str. 41;37213;Witzenhausen
-Jobcenter Waldeck-Frankenberg ;Korbach;;Louis-Peter-Str.   49-51;34497;Korbach
-Jobcenter Limburg-Weilburg;Limburg-Weilburg;;Cahensly-Str. 2;65549;Limburg
-Jobcenter Schwalm-Eder;Marburg;;Wallstraße 16;34576;Homberg/Efze
-Jobcenter Schwalm-Eder-Süd                       ;Marburg;;Marienburger Str. 9;34613;Schwalmstadt
-MainArbeit kommunales Jobcenter Offenbach;Offenbach;;Domstr. 72;63067;Offenbach
-Jobcenter MainArbeit GmbH;Offenbach;;Berliner Str. 220-224;63067;Offenbach
-Jobcenter Lahn-Dill ;Wetzlar;;Sophienstr. 5;35576;Wetzlar
+gE/AAgAw/zkT,AA Bezirk,Organisationseinheit / Empfänger,Anschrift,PLZ,Ort
+Regionaldirektion Hessen,,,Saonestr. 2-4,60528,Frankfurt a.M.
+Hersfeld-Rotenburg, Landkreis,Bad Hersfeld,,Friedloserstr. 12,36251,Bad Hersfeld
+Jobcenter Werra-Meißner,Bad Hersfeld,,Fuldaer Str. 6,37269,Eschwege
+Neue Wege Kreis Bergstraße,Darmstadt,,Walther- Rathenau- Str. 1,64646,Heppenheim
+Jobcenter Darmstadt,Darmstadt,,Groß-Gerauer-Weg 3,64295,Darmstadt
+Jobcenter,Darmstadt,,Jägertorstraße 207 Trakt 7,64289,Darmstadt
+Kommunales Jobcenter,Darmstadt,,Wilhelm-Seipp-Str. 4,64521,Groß-Gerau
+Jobcenter,Darmstadt,,Michelstädter Str. 12,64711,Erbach
+Jobcenter Frankfurt am Main,Frankfurt am Main,,Hainer Weg 44,60599,Frankfurt a.M. 
+Jobcenter,Fulda,,Robert-Kircher-Str. 24,36037,Fulda
+Jobcenter Gießen,Gießen,,Nordanlage 60,35390,Gießen
+Jobcenter,Gießen,,Goldhelg 20,36341,Lauterbach
+Jobcenter Wetteraukreis,Gießen,,Schulze-Delitzsch-Str. 1,61169,Friedberg
+Jobcenter Landkreis Kassel,Kassel,,Ständeplatz 23,34117,Kassel
+"Arbeitsförderung Landkreis Kassel",Kassel,,Kurfürstenstr. 19,34466,Wolfhagen
+"Jobcenter Landkreis Kassel",Kassel,,Ständeplatz 23,34117,Kassel
+Jobcenter Stadt Kassel,Kassel,,Grüner Weg 46 o. Rathaus, Obere Königstr. 8,34117,Kassel
+Arbeitsförderung Schwalm-Eder,Kassel,,Schladenweg 29,34560,Fritzlar
+Arbeitsförderung Schwalm-Eder,Kassel,,Schwarzenberger Weg 31,34212,Melsungen
+Arbeitsförderung Werra-Meissner-Kreis,Kassel,,Walburger Str. 41,37213,Witzenhausen
+Jobcenter Waldeck-Frankenberg ,Korbach,,Louis-Peter-Str. 49-51,34497,Korbach
+Jobcenter Limburg-Weilburg,Limburg-Weilburg,,Cahensly-Str. 2,65549,Limburg
+Jobcenter Schwalm-Eder,Marburg,,Wallstraße 16,34576,Homberg/Efze
+Jobcenter Schwalm-Eder-Süd,Marburg,,Marienburger Str. 9,34613,Schwalmstadt
+MainArbeit kommunales Jobcenter Offenbach,Offenbach,,Domstr. 72,63067,Offenbach
+Jobcenter MainArbeit GmbH,Offenbach,,Berliner Str. 220-224,63067,Offenbach
+Jobcenter Lahn-Dill ,Wetzlar,,Sophienstr. 5,35576,Wetzlar
