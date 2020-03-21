@@ -1,7 +1,6 @@
 import React from "react";
 
 import AfterTaxValue from "./AfterTaxValue";
-import Netto from "./Netto";
 import TextInput from "./TextInput";
 
 function Employee({ value, onChange }) {
