@@ -1,6 +1,7 @@
 import React from "react";
 
 import TextInput from "./TextInput";
+import Netto from "./Netto";
 
 function Employee({ value, onChange }) {
   return (
@@ -97,6 +98,12 @@ function Employee({ value, onChange }) {
             })
           }
         />
+      </td>
+      <td className="p-2 border">
+        <Netto brutto={value.regularSalary} category={1} taxClass={value.taxClass}></Netto>
+      </td>
+      <td className="p-2 border">
+        <Netto brutto={value.currentSalary} category={1} taxClass={value.taxClass}></Netto>
       </td>
     </tr>
   );

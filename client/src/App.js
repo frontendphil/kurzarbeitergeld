@@ -5,7 +5,7 @@ import Employee from "./Employee";
 const defaultEmployee = {
   name: "",
   insuranceNumber: "",
-  taxClass: "",
+  taxClass: 1,
   hasChildren: false,
   lostHours: 0,
   regularSalary: 0,
@@ -29,8 +29,10 @@ function App() {
               <th className="p-4">Steuerklasse</th>
               <th className="p-4">Kinder (Ja/Nein)</th>
               <th className="p-4">Anzahl der ausgefallenen Stunden</th>
-              <th className="p-4">Soll-Entgeld</th>
-              <th className="p-4">Ist-Entgeld</th>
+              <th className="p-4">Soll-Entgelt</th>
+              <th className="p-4">Ist-Entgelt</th>
+              <th className="p-4">Soll-Entgelt (netto)</th>
+              <th className="p-4">Ist-Entgelt (netto)</th>
             </tr>
           </thead>
           <tbody>
