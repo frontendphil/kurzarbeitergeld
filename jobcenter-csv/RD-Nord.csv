@@ -1,42 +1,42 @@
-gE/AAgAw/zkT ;AA Bezirk;Organisationseinheit / Empfänger;Anschrift;PLZ;Ort
-Regionaldirektion Nord;;;Projensdorfer Str. 82;24106;Kiel
-Jobcenter Herzogtum Lauenburg;Bad Oldesloe;;Alt-Möllner Straße 2;23879;Mölln
-Jobcenter Stormarn;Bad Oldesloe;;Berliner Ring 8 und 10;23843;Bad Oldesloe
-Jobcenter Kreis Pinneberg ;Elmshorn;;Adenauerdamm 1;25337;Elmshorn
-Jobcenter Steinburg ;Elmshorn;;Lomsenplatz 1;25524;Itzehoe
-Jobcenter Flensburg;Flensburg;;Waldstr. 2;24939;Flensburg
-Jobcenter;Flensburg;;Marktstr. 6;25813;Husum
-Jobcenter;Flensburg;;Flensburger Str. 7;24837;Schleswig
-Jobcenter Mecklenburgische Seenplatte Nord;Neubrandenburg;;Zum Amtsbrink 2;17192;Waren
-Jobcenter Mecklenburgische Seenplatte Süd;Neubrandenburg;;Ponyweg 37 - 43;17034;Neubrandenburg
-Jobcenter Uecker-Randow;Neubrandenburg;;Markstr. 58-62;17309;Pasewalk
-Jobcenter team.arbeit. Hamburg;Hamburg;;Raboisen 28;20095;Hamburg
-Jobcenter Dithmarschen  ;Heide;;Rungholtstr. 1;25746;Heide
-Jobcenter Mitte;Heide;;Bütjestraße 1;25704;Meldorf
-Jobcenter Süd;Heide;;von-Humboldt-Platz 9;25541;Brunsbüttel
-Jobcenter Kiel;Kiel;;Adolf-Westphal-Str. 2;24143;Kiel
-Jobcenter Kreis Plön;Kiel;;Behler Weg 23;24306;Plön
-Jobcenter Rendsburg-Eckernförde;Kiel;;Riesebyer Str. 6;23340;Eckernförde
-Jobcenter Rendsburg-Eckernförde;Kiel;;Schwedendamm 10-12;24143;Kiel
-Jobcenter Lübeck;Lübeck;;Kaninchenborn 31;23560;Lübeck
-Jobcenter Ostholstein;Lübeck;;Elisabethstr. 16-18;23701;Eutin
-Jobcenter Neumünster;Neumünster;;Friedrichstr. 7-19;24534;Neumünster
-Jobcenter Kreis Rendsburg-Eckenförde;Neumünster;;Ritterstr. 10;24768;Rendsburg
-Jobcenter Kreis Segeberg;Neumünster;;Am Wasserwerk 5;23795;Bad Segeberg
-Jobcenter  Bad Doberan ;Rostock;;Kammerhof 2;18209;Bad Doberan
-Jobcenter Landkreis Bad Doberan Ost;Rostock;;Kopernikusstr. 1a;18057;Rostock
-Jobcenter Güstrow;Rostock;;Eisenbahnstr. 12;18273;Güstrow
-Jobcenter Güstrow;Rostock;;Am Wall 3-5;18273;Güstrow
-Jobcenter GüstrowStandort Teterow;Rostock;;Rostockerstr. 43-49;17166;Teterow
-Jobcenter GüstrowStandort Bützow;Rostock;;Am Ausfall 67;18246;Bützow
-Jobcenter Rostock ;Rostock;;Friedrich.-Engels-Platz 6-8;18055;Rostock
-Hanse Jobcenter Rostock (HJR);Rostock;;Kopernikusstr. 1a;18057;Rostock
-Hanse Jobcenter Rostock (HJR);Rostock;;Schweriner Str. 50;18069;Rostock
-Jobcenter Ludwigslust- Parchim  ;Schwerin;;Scharnhorststr. 1;19370;Parchim
-Jobcenter Landeshauptstadt Schwerin;Schwerin;;Am Margaretenhof 14-16;19057;Schwerin
-Jobcenter Nordwestmecklenburg ;Schwerin;;Mühlenstr.32;23966;Wismar
-Jobcenter Hansestadt Greifswald ;Stralsund;;Am Gorzberg 1, Haus 7;17489;Hansestadt Greifswald
-Jobcenter Nordvorpommern;Stralsund;;Bahnhofstr. 16;18507;Grimmen
-Jobcenter Rügen;Stralsund;;Gingster Chaussee 5a;18528;Bergen auf Rügen
-Jobcenter Hansestadt Stralsund;Stralsund;;Carl-Heydemann-Ring 98;18437;Stralsund
-Jobcenter NVP/Ribnitz Damgarten;Stralsund;;Musikantenweg 5;18311;Ribnitz Damgarten
+gE/AAgAw/zkT ,AA Bezirk,Organisationseinheit / Empfänger,Anschrift,PLZ,Ort
+Regionaldirektion Nord,,,Projensdorfer Str. 82,24106,Kiel
+Jobcenter Herzogtum Lauenburg,Bad Oldesloe,,Alt-Möllner Straße 2,23879,Mölln
+Jobcenter Stormarn,Bad Oldesloe,,Berliner Ring 8 und 10,23843,Bad Oldesloe
+Jobcenter Kreis Pinneberg ,Elmshorn,,Adenauerdamm 1,25337,Elmshorn
+Jobcenter Steinburg ,Elmshorn,,Lomsenplatz 1,25524,Itzehoe
+Jobcenter Flensburg,Flensburg,,Waldstr. 2,24939,Flensburg
+Jobcenter,Flensburg,,Marktstr. 6,25813,Husum
+Jobcenter,Flensburg,,Flensburger Str. 7,24837,Schleswig
+Jobcenter Mecklenburgische Seenplatte Nord,Neubrandenburg,,Zum Amtsbrink 2,17192,Waren
+Jobcenter Mecklenburgische Seenplatte Süd,Neubrandenburg,,Ponyweg 37 - 43,17034,Neubrandenburg
+Jobcenter Uecker-Randow,Neubrandenburg,,Markstr. 58-62,17309,Pasewalk
+Jobcenter team.arbeit. Hamburg,Hamburg,,Raboisen 28,20095,Hamburg
+Jobcenter Dithmarschen,Heide,,Rungholtstr. 1,25746,Heide
+Jobcenter Mitte,Heide,,Bütjestraße 1,25704,Meldorf
+Jobcenter Süd,Heide,,von-Humboldt-Platz 9,25541,Brunsbüttel
+Jobcenter Kiel,Kiel,,Adolf-Westphal-Str. 2,24143,Kiel
+Jobcenter Kreis Plön,Kiel,,Behler Weg 23,24306,Plön
+Jobcenter Rendsburg-Eckernförde,Kiel,,Riesebyer Str. 6,23340,Eckernförde
+Jobcenter Rendsburg-Eckernförde,Kiel,,Schwedendamm 10-12,24143,Kiel
+Jobcenter Lübeck,Lübeck,,Kaninchenborn 31,23560,Lübeck
+Jobcenter Ostholstein,Lübeck,,Elisabethstr. 16-18,23701,Eutin
+Jobcenter Neumünster,Neumünster,,Friedrichstr. 7-19,24534,Neumünster
+Jobcenter Kreis Rendsburg-Eckenförde,Neumünster,,Ritterstr. 10,24768,Rendsburg
+Jobcenter Kreis Segeberg,Neumünster,,Am Wasserwerk 5,23795,Bad Segeberg
+Jobcenter  Bad Doberan ,Rostock,,Kammerhof 2,18209,Bad Doberan
+Jobcenter Landkreis Bad Doberan Ost,Rostock,,Kopernikusstr. 1a,18057,Rostock
+Jobcenter Güstrow,Rostock,,Eisenbahnstr. 12,18273,Güstrow
+Jobcenter Güstrow,Rostock,,Am Wall 3-5,18273,Güstrow
+Jobcenter GüstrowStandort Teterow,Rostock,,Rostockerstr. 43-49,17166,Teterow
+Jobcenter GüstrowStandort Bützow,Rostock,,Am Ausfall 67,18246,Bützow
+Jobcenter Rostock ,Rostock,,Friedrich.-Engels-Platz 6-8,18055,Rostock
+Hanse Jobcenter Rostock (HJR),Rostock,,Kopernikusstr. 1a,18057,Rostock
+Hanse Jobcenter Rostock (HJR),Rostock,,Schweriner Str. 50,18069,Rostock
+Jobcenter Ludwigslust- Parchim  ,Schwerin,,Scharnhorststr. 1,19370,Parchim
+Jobcenter Landeshauptstadt Schwerin,Schwerin,,Am Margaretenhof 14-16,19057,Schwerin
+Jobcenter Nordwestmecklenburg ,Schwerin,,Mühlenstr.32,23966,Wismar
+Jobcenter Hansestadt Greifswald ,Stralsund,,Am Gorzberg 1, Haus 7,17489,Hansestadt Greifswald
+Jobcenter Nordvorpommern,Stralsund,,Bahnhofstr. 16,18507,Grimmen
+Jobcenter Rügen,Stralsund,,Gingster Chaussee 5a,18528,Bergen auf Rügen
+Jobcenter Hansestadt Stralsund,Stralsund,,Carl-Heydemann-Ring 98,18437,Stralsund
+Jobcenter NVP/Ribnitz Damgarten,Stralsund,,Musikantenweg 5,18311,Ribnitz Damgarten
