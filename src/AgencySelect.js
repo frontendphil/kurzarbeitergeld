@@ -92,10 +92,8 @@ const useAgencies = query => {
     const timeout = setTimeout(
       () =>
         fetch(`/api/agencies?filter=${query}`).then(async request => {
-          const data = await request.json();
-
           if (!cancelled) {
-            setAgencies(data.agencies[0]);
+            setAgencies(await request.json());
           }
         }),
       300
