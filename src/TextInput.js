@@ -33,7 +33,9 @@ function TextInput(
           }
         }}
         onBlur={event => {
-          onComplete(internalValue);
+          if (onComplete) {
+            onComplete(internalValue);
+          }
 
           if (onBlur) {
             onBlur(event);
