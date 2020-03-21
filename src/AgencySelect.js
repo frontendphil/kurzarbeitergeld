@@ -91,9 +91,7 @@ const useAgencies = query => {
     let cancelled = false;
     const timeout = setTimeout(
       () =>
-        fetch(
-          `https://2z8tcr03aj.execute-api.us-east-1.amazonaws.com/dev/agencies?filter=${query}`
-        ).then(async request => {
+        fetch(`/api/agencies?filter=${query}`).then(async request => {
           const data = await request.json();
 
           if (!cancelled) {
