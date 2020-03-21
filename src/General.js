@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import AgencySelect from "./AgencySelect";
 import BankDetails from "./BankDetails";
@@ -16,6 +16,13 @@ const defaultCompany = {
 
 function General({ onStateChange }) {
   const [company, setCompany] = useState(defaultCompany);
+
+  useEffect(() => {
+    onStateChange(currentState => ({
+      ...currentState,
+      general: company
+    }));
+  }, [onStateChange, company]);
 
   return (
     <Card>
@@ -42,7 +49,7 @@ function General({ onStateChange }) {
             <TextInput
               label="Firmenname"
               value={company.name}
-              onComplete={name => onStateChange({ ...company, name })}
+              onComplete={name => setCompany({ ...company, name })}
             />
           </div>
 
@@ -53,7 +60,7 @@ function General({ onStateChange }) {
                   label="Straße"
                   value={company.streetName}
                   onComplete={streetName =>
-                    onStateChange({ ...company, streetName })
+                    setCompany({ ...company, streetName })
                   }
                 />
               </div>
@@ -64,7 +71,7 @@ function General({ onStateChange }) {
                 label="Nr."
                 value={company.streetNumber}
                 onComplete={streetNumber =>
-                  onStateChange({ ...company, streetNumber })
+                  setCompany({ ...company, streetNumber })
                 }
               />
             </div>
@@ -76,7 +83,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Postleitzahl"
                   value={company.zipCode}
-                  onComplete={zipCode => onStateChange({ ...company, zipCode })}
+                  onComplete={zipCode => setCompany({ ...company, zipCode })}
                 />
               </div>
             </div>
@@ -85,7 +92,7 @@ function General({ onStateChange }) {
               <TextInput
                 label="Stadt"
                 value={company.city}
-                onComplete={city => onStateChange({ ...company, city })}
+                onComplete={city => setCompany({ ...company, city })}
               />
             </div>
           </div>
@@ -98,7 +105,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Telefon"
                   value={company.phone}
-                  onComplete={phone => onStateChange({ ...company, phone })}
+                  onComplete={phone => setCompany({ ...company, phone })}
                 />
               </div>
             </div>
@@ -107,7 +114,7 @@ function General({ onStateChange }) {
               <TextInput
                 label="Telefax"
                 value={company.fax}
-                onComplete={fax => onStateChange({ ...company, fax })}
+                onComplete={fax => setCompany({ ...company, fax })}
               />
             </div>
           </div>
@@ -116,7 +123,7 @@ function General({ onStateChange }) {
             <TextInput
               label="Email"
               value={company.email}
-              onComplete={email => onStateChange({ ...company, email })}
+              onComplete={email => setCompany({ ...company, email })}
             />
           </div>
         </div>
@@ -127,7 +134,7 @@ function General({ onStateChange }) {
       <div className="w-1/2">
         <BankDetails
           onChange={bankDetails =>
-            onStateChange({ ...company, ...bankDetails })
+            setCompany({ ...company, ...bankDetails })
           }
           // TODO
         />

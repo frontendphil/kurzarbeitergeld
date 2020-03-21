@@ -22,9 +22,9 @@ function EmployeeData({ onStateChange }) {
   useEffect(() => {
     onStateChange(currentState => ({
       ...currentState,
-      employees
+      employees: [...employees, currentEmployee]
     }));
-  }, [employees, onStateChange]);
+  }, [employees, currentEmployee, onStateChange]);
 
   return (
     <Card title="Mitarbeiterdaten">

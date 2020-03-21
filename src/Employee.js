@@ -4,7 +4,7 @@ import AfterTaxValue, { calculateValueAfterTax } from "./AfterTaxValue";
 import Select from "./Select";
 import TextInput from "./TextInput";
 
-function Employee({ value, onChange, onStateChange }) {
+function Employee({ value, onChange }) {
   useEffect(() => {
     const currentSalaryAfterTax = calculateValueAfterTax(
       value.currentSalaryBeforeTax,
@@ -19,6 +19,28 @@ function Employee({ value, onChange, onStateChange }) {
 
         currentSalaryAfterTax: calculateValueAfterTax(
           value.currentSalaryBeforeTax,
+          value.hasChildren,
+          value.taxClass,
+          false
+        )
+      });
+    }
+  }, [onChange, value]);
+
+  useEffect(() => {
+    const regularSalaryAfterTax = calculateValueAfterTax(
+      value.regularSalaryBeforeTax,
+      value.hasChildren,
+      value.taxClass,
+      false
+    );
+
+    if (value.regularSalaryAfterTax !== regularSalaryAfterTax) {
+      onChange({
+        ...value,
+
+        regularSalaryAfterTax: calculateValueAfterTax(
+          value.regularSalaryBeforeTax,
           value.hasChildren,
           value.taxClass,
           false

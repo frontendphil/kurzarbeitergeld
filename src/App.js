@@ -17,12 +17,7 @@ function App() {
       <Title1>Antrag auf Kurzarbeitergeld</Title1>
 
       <General
-        onStateChange={general =>
-          setFormData({
-            ...formData,
-            general
-          })
-        }
+        onStateChange={setFormData}
       />
 
       <EmployeeData onStateChange={setFormData} />
