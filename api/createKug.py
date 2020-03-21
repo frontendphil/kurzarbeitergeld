@@ -55,6 +55,7 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
 
         requestBody = self.rfile.read()
+        print(requestBody)
 
         data_dict = {
             'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
