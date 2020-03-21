@@ -3,6 +3,7 @@
 from http.server import BaseHTTPRequestHandler
 import os
 import pdfrw
+import json
 
 TEMPLATE_PATH = './pdf-templates/antrag-kug.pdf'
 OUTPUT_PATH = 'kug.pdf'
@@ -53,8 +54,8 @@ WIDGET_SUBTYPE_KEY = '/Widget'
 class handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
-
-        requestBody = self.rfile.read()
+        content_len = int(self.headers.get('Content-Length'))
+        requestBody = json.loads(self.rfile.read(content_len).decode())
         print(requestBody)
 
         data_dict = {
