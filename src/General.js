@@ -13,7 +13,7 @@ const defaultCompany = {
   email: ""
 };
 
-function General({onStateChange}) {
+function General({ onStateChange }) {
   const [company, setCompany] = useState(defaultCompany);
 
   return (
@@ -56,7 +56,7 @@ function General({onStateChange}) {
                     setCompany({ ...company, streetName })
                   }
                   onBlur={() => onStateChange(company)}
-              />
+                />
               </div>
             </div>
 
@@ -68,7 +68,6 @@ function General({onStateChange}) {
                   setCompany({ ...company, streetNumber })
                 }
                 onBlur={() => onStateChange(company)}
-
               />
             </div>
           </div>

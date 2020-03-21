@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import AfterTaxValue from "./AfterTaxValue";
+import AfterTaxValue, { calculateValueAfterTax } from "./AfterTaxValue";
 import Select from "./Select";
 import TextInput from "./TextInput";
 
 function Employee({ value, onChange, onStateChange }) {
+  useEffect(() => {
+    const currentSalaryAfterTax = calculateValueAfterTax(
+      value.currentSalaryBeforeTax,
+      value.hasChildren,
+      value.taxClass,
+      false
+    );
+
+    if (value.currentSalaryAfterTax !== currentSalaryAfterTax) {
+      onChange({
+        ...value,
+
+        currentSalaryAfterTax: calculateValueAfterTax(
+          value.currentSalaryBeforeTax,
+          value.hasChildren,
+          value.taxClass,
+          false
+        )
+      });
+    }
+  }, [onChange, value]);
+
   return (
     <>
       <td className="p-2 border">
@@ -20,7 +42,6 @@ function Employee({ value, onChange, onStateChange }) {
                   name
                 })
               }
-              onBlur={() => onStateChange(value)}
             />
           </div>
 
@@ -35,7 +56,6 @@ function Employee({ value, onChange, onStateChange }) {
                   insuranceNumber
                 })
               }
-              onBlur={() => onStateChange(value)}
             />
           </div>
         </div>
@@ -49,7 +69,6 @@ function Employee({ value, onChange, onStateChange }) {
               taxClass: target.value
             };
             onChange(newState);
-            onStateChange(newState);
           }}
         >
           <option value="1">I</option>
@@ -71,7 +90,6 @@ function Employee({ value, onChange, onStateChange }) {
               hasChildren: target.checked
             })
           }
-          onBlur={() => onStateChange(value)}
         />
       </td>
       <td className="p-2 border">
@@ -85,7 +103,6 @@ function Employee({ value, onChange, onStateChange }) {
               lostHours
             })
           }
-          onBlur={() => onStateChange(value)}
         />
       </td>
       <td className="p-2 border">
@@ -100,7 +117,6 @@ function Employee({ value, onChange, onStateChange }) {
                 regularSalaryBeforeTax
               })
             }
-            onBlur={() => onStateChange(value)}
           />
         </div>
 
@@ -123,7 +139,6 @@ function Employee({ value, onChange, onStateChange }) {
                 currentSalaryBeforeTax
               })
             }
-            onBlur={() => onStateChange(value)}
           />
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Card from "./Card";
 import Employee from "./Employee";
@@ -15,9 +15,16 @@ const defaultEmployee = {
   currentSalaryAfterTax: ""
 };
 
-function EmployeeData({onStateChange}) {
+function EmployeeData({ onStateChange }) {
   const [employees, setEmployees] = useState([]);
   const [currentEmployee, setCurrentEmployee] = useState(defaultEmployee);
+
+  useEffect(() => {
+    onStateChange(currentState => ({
+      ...currentState,
+      employees
+    }));
+  }, [employees, onStateChange]);
 
   return (
     <Card title="Mitarbeiterdaten">
@@ -44,13 +51,12 @@ function EmployeeData({onStateChange}) {
                     ...employees.slice(index + 1)
                   ]);
                 }}
-                onStateChange={() => onStateChange([...employees, currentEmployee])}
               />
             </tr>
           ))}
 
           <tr className={employees.length % 2 !== 0 ? "bg-gray-100" : ""}>
-            <Employee value={currentEmployee} onChange={setCurrentEmployee} onStateChange={() => onStateChange([...employees, currentEmployee])} />
+            <Employee value={currentEmployee} onChange={setCurrentEmployee} />
           </tr>
         </tbody>
       </table>
