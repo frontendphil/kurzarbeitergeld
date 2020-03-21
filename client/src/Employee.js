@@ -95,7 +95,6 @@ function Employee({ value, onChange }) {
 
         <AfterTaxValue
           beforeTax={value.regularSalaryBeforeTax}
-          category={1}
           taxClass={value.taxClass}
         />
       </td>
@@ -116,7 +115,6 @@ function Employee({ value, onChange }) {
 
         <AfterTaxValue
           beforeTax={value.currentSalaryBeforeTax}
-          category={1}
           taxClass={value.taxClass}
         />
       </td>
