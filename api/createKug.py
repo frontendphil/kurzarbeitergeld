@@ -23,7 +23,7 @@ class handler(BaseHTTPRequestHandler):
         response = os.listdir(".")
         print(response)
         self.wfile.write(response.encode())
-        return 
+        return
 
     def do_POST(self):
         print(os.listdir("."))
@@ -44,5 +44,8 @@ class handler(BaseHTTPRequestHandler):
                         pdfrw.PdfDict(V='{}'.format('HAAALLLOOOO'))
                     )
 
-        pdfrw.PdfWriter().write(OUTPUT_PATH, template_pdf)
+        pdfrw.PdfWriter().write(self.wfile, template_pdf)
 
+        self.send_response(200)
+        self.send_header('Content-type', 'application/pdf')
+        return
