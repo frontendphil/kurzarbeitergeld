@@ -9,7 +9,6 @@ function App() {
       <h1 className="mb-8 text-5xl">Antrag auf Kurzarbeitergeld</h1>
 
       <General />
-
       <EmployeeData />
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import AgencySelect from "./AgencySelect";
 import BankDetails from "./BankDetails";
 import Card from "./Card";
 import TextInput from "./TextInput";
@@ -16,10 +17,27 @@ function General() {
   const [company, setCompany] = useState(defaultCompany);
 
   return (
-    <Card title="Stammdaten">
+    <Card>
+      <h3 className="mb-2 text-3xl">Jobcenter</h3>
+
+      <div className="mb-6">
+        <AgencySelect
+          value={company.agency}
+          onChange={agency =>
+            setCompany({
+              ...company,
+
+              agency
+            })
+          }
+        />
+      </div>
+
+      <h3 className="mb-2 text-3xl">Firmendaten</h3>
+
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <div className=" mb-6">
+          <div className="mb-6">
             <TextInput
               label="Firmenname"
               value={company.name}

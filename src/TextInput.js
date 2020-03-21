@@ -1,6 +1,6 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-function TextInput({ value, label, placeholder, onChange, ...rest }) {
+function TextInput({ value, label, placeholder, onChange, ...rest }, ref) {
   return (
     <div>
       {label && (
@@ -11,6 +11,7 @@ function TextInput({ value, label, placeholder, onChange, ...rest }) {
 
       <input
         {...rest}
+        ref={ref}
         placeholder={placeholder || label}
         type="text"
         className="bg-gray-200 border-gray-200 focus:outline-none focus:bg-white focus:border-gray-500 border rounded py-2 px-4 block w-full appearance-none leading-normal"
@@ -21,4 +22,4 @@ function TextInput({ value, label, placeholder, onChange, ...rest }) {
   );
 }
 
-export default TextInput;
+export default forwardRef(TextInput);
