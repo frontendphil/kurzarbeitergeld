@@ -85,6 +85,10 @@ export const resetBankData = () => ({
   type: "RESET_BANK_DATA"
 });
 
+export const addExampleData = () => ({
+  type: "ADD_EXAMPLE_DATA"
+});
+
 const dataReducer = (state, action) => {
   switch (action.type) {
     case SET_GENERAL_FIELD: {
@@ -218,6 +222,7 @@ const dataReducer = (state, action) => {
 
 const validationReducer = (state, action) => {
   switch (action.type) {
+    case "ADD_EXAMPLE_DATA":
     case SET_GENERAL_FIELD: {
       const general = getGeneralErrors(state.general);
 
@@ -252,12 +257,48 @@ const validationReducer = (state, action) => {
   }
 };
 
+const exampleReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_EXAMPLE_DATA": {
+      return {
+        ...state,
+
+        general: {
+          ...defaultGeneral,
+
+          name: "ACME",
+          streetName: "Karl-Liebknecht Straße",
+          streetNumber: "42",
+          zipCode: "14462",
+          city: "Potsdam",
+          phone: "0331 / 123456",
+          email: "karl.liebknecht@spd.de",
+
+          iban: "DE12500105170648489890",
+
+          agency: {
+            Bezeichnung: "Jobcenter Stadt Ansbach",
+            "AA Bezirk": "Ansbach",
+            Anschrift: "Schalkhäuser Str. 40",
+            PLZ: "91522",
+            Ort: "Ansbach"
+          }
+        }
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
 const REQUIRED_ERROR = "Bitte geben Sie einen Wert ein";
 
 const compose = (...reducers) => (state, action) =>
   reducers.reduce((result, reducer) => reducer(result, action), state);
 
-const appReducer = compose(dataReducer, validationReducer);
+const appReducer = compose(dataReducer, exampleReducer, validationReducer);
 
 const mandatoryFields = [
   "name",

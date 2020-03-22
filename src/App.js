@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import AddExampleData from "./AddExampleData";
 import { Provider } from "./AppContext";
 import EmployeeData from "./EmployeeData";
 import General from "./General";
@@ -26,12 +27,19 @@ function App() {
             Download PDF
           </a>
         )}
-        <Submit
-          onSuccess={pdfBlob => {
-            const objectURL = URL.createObjectURL(pdfBlob);
-            setPDFLink(objectURL);
-          }}
-        />
+
+        <div className="m-8 w-4/5 flex justify-center">
+          <div className="mr-4">
+            <AddExampleData />
+          </div>
+
+          <Submit
+            onSuccess={pdfBlob => {
+              const objectURL = URL.createObjectURL(pdfBlob);
+              setPDFLink(objectURL);
+            }}
+          />
+        </div>
       </div>
     </Provider>
   );
