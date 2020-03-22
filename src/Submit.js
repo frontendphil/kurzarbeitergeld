@@ -8,7 +8,7 @@ import {
   useHasErrors
 } from "./AppContext";
 
-function Submit({ onSuccess }) {
+function Submit({ onSuccess, beforeSubmit }) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const hasErrors = useHasErrors();
@@ -31,6 +31,9 @@ function Submit({ onSuccess }) {
           return;
         }
 
+        if (beforeSubmit != null) {
+          beforeSubmit();
+        }
         setLoading(true);
 
         const formResponse = fetch(
