@@ -60,6 +60,16 @@ export const updateBankDetails = bankDetails => ({
   payload: { bankDetails }
 });
 
+export const updateEmployee = (index, employee) => ({
+  type: "UPDATE_EMPLOYEE",
+  payload: { index, employee }
+});
+
+export const addEmployee = employee => ({
+  type: "ADD_EMPLOYEE",
+  payload: { employee }
+});
+
 const appReducer = (state, action) => {
   switch (action.type) {
     case "SET_GENERAL_FIELD": {
@@ -85,6 +95,32 @@ const appReducer = (state, action) => {
           ...state.general,
           ...bankDetails
         }
+      };
+    }
+
+    case "UPDATE_EMPLOYEE": {
+      const { index, employee } = action.payload;
+
+      const employees = [
+        ...state.employees.slice(0, index),
+        employee,
+        ...state.employees.slice(index + 1)
+      ];
+
+      return {
+        ...state,
+
+        employees
+      };
+    }
+
+    case "ADD_EMPLOYEE": {
+      const { employee } = action.payload;
+
+      return {
+        ...state,
+
+        employees: [...state.employees, employee]
       };
     }
 

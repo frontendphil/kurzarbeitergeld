@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
+import {
+  addEmployee,
+  updateEmployee,
+  useDispatch,
+  useEmployeeData
+} from "./AppContext";
 import Card from "./Card";
 import Employee from "./Employee";
 
@@ -16,15 +22,9 @@ const defaultEmployee = {
 };
 
 function EmployeeData({ onStateChange }) {
-  const [employees, setEmployees] = useState([]);
+  const dispatch = useDispatch();
+  const employees = useEmployeeData();
   const [currentEmployee, setCurrentEmployee] = useState(defaultEmployee);
-
-  useEffect(() => {
-    onStateChange(currentState => ({
-      ...currentState,
-      employees: [...employees, currentEmployee]
-    }));
-  }, [employees, currentEmployee, onStateChange]);
 
   return (
     <Card title="Mitarbeiterdaten">
@@ -44,13 +44,9 @@ function EmployeeData({ onStateChange }) {
             <tr key={index} className={index % 2 !== 0 ? "bg-gray-100" : ""}>
               <Employee
                 value={employee}
-                onChange={changedEmployee => {
-                  setEmployees([
-                    ...employees.slice(0, index),
-                    changedEmployee,
-                    ...employees.slice(index + 1)
-                  ]);
-                }}
+                onChange={changedEmployee =>
+                  dispatch(updateEmployee(index, changedEmployee))
+                }
               />
             </tr>
           ))}
@@ -65,10 +61,7 @@ function EmployeeData({ onStateChange }) {
         <button
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
           onClick={() => {
-            setEmployees(currentEmployees => [
-              ...currentEmployees,
-              currentEmployee
-            ]);
+            dispatch(addEmployee(currentEmployee));
 
             setCurrentEmployee(defaultEmployee);
           }}

@@ -1,38 +1,35 @@
 import React from "react";
 
+import { useEmployeeData } from "./AppContext";
 import Card from "./Card";
 import TextInput from "./TextInput";
 
-function Summary({ formData }) {
-  const regularSalary = formData.employees.reduce(
-    (sum, { regularSalaryAfterTax }) => {
-      if (regularSalaryAfterTax == null) {
-        return sum;
-      }
+function Summary() {
+  const employees = useEmployeeData();
 
-      if (regularSalaryAfterTax === "") {
-        return sum;
-      }
+  const regularSalary = employees.reduce((sum, { regularSalaryAfterTax }) => {
+    if (regularSalaryAfterTax == null) {
+      return sum;
+    }
 
-      return sum + parseInt(regularSalaryAfterTax, 10);
-    },
-    0
-  );
+    if (regularSalaryAfterTax === "") {
+      return sum;
+    }
 
-  const currentSalary = formData.employees.reduce(
-    (sum, { currentSalaryAfterTax }) => {
-      if (currentSalaryAfterTax == null) {
-        return sum;
-      }
+    return sum + parseInt(regularSalaryAfterTax, 10);
+  }, 0);
 
-      if (currentSalaryAfterTax === "") {
-        return sum;
-      }
+  const currentSalary = employees.reduce((sum, { currentSalaryAfterTax }) => {
+    if (currentSalaryAfterTax == null) {
+      return sum;
+    }
 
-      return sum + parseInt(currentSalaryAfterTax, 10);
-    },
-    0
-  );
+    if (currentSalaryAfterTax === "") {
+      return sum;
+    }
+
+    return sum + parseInt(currentSalaryAfterTax, 10);
+  }, 0);
 
   return (
     <Card title="Zusammenfassung">

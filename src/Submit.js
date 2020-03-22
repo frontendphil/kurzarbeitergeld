@@ -1,6 +1,11 @@
 import React from "react";
 
+import { useEmployeeData, useGeneralData } from "./AppContext";
+
 function Submit({ formData, onSuccess }) {
+  const general = useGeneralData();
+  const employees = useEmployeeData();
+
   return (
     <div className="m-8 w-4/5 flex justify-center">
       <button
@@ -13,7 +18,7 @@ function Submit({ formData, onSuccess }) {
               headers: {
                 "Content-Type": "application/json"
               },
-              body: JSON.stringify(formData)
+              body: JSON.stringify({ general, employees })
             }
           );
 

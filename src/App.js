@@ -8,10 +8,6 @@ import Summary from "./Summary";
 import Title1 from "./Title1";
 
 function App() {
-  const [formData, setFormData] = useState({
-    general: {},
-    employees: []
-  });
   const [pdfLink, setPDFLink] = useState(null);
 
   return (
@@ -21,9 +17,9 @@ function App() {
 
         <General />
 
-        <EmployeeData onStateChange={setFormData} />
+        <EmployeeData />
 
-        <Summary formData={formData} />
+        <Summary />
 
         {pdfLink != null && (
           <a href={pdfLink} download="antrag-kug.pdf">
@@ -31,7 +27,6 @@ function App() {
           </a>
         )}
         <Submit
-          formData={formData}
           onSuccess={pdfBlob => {
             const objectURL = URL.createObjectURL(pdfBlob);
             setPDFLink(objectURL);
