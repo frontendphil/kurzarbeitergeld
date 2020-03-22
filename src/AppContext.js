@@ -156,8 +156,8 @@ const dataReducer = (state, action) => {
 
           currentSalaryAfterTax: calculateValueAfterTax(
             value,
-            employee.hasChildren,
-            employee.taxClass,
+            updatedEmployee.hasChildren,
+            updatedEmployee.taxClass,
             false
           )
         };
@@ -169,46 +169,27 @@ const dataReducer = (state, action) => {
 
           regularSalaryAfterTax: calculateValueAfterTax(
             value,
-            employee.hasChildren,
-            employee.taxClass,
+            updatedEmployee.hasChildren,
+            updatedEmployee.taxClass,
             false
           )
         };
       }
 
-      if (field === "taxClass") {
+      if (field === "taxClass" || field === "hasChildren") {
         updatedEmployee = {
           ...updatedEmployee,
 
           currentSalaryAfterTax: calculateValueAfterTax(
-            employee.currentSalaryBeforeTax,
-            employee.hasChildren,
-            value,
+            updatedEmployee.currentSalaryBeforeTax,
+            updatedEmployee.hasChildren,
+            updatedEmployee.taxClass,
             false
           ),
           regularSalaryAfterTax: calculateValueAfterTax(
-            employee.regularSalaryBeforeTax,
-            employee.hasChildren,
-            value,
-            false
-          )
-        };
-      }
-
-      if (field === "hasChildren") {
-        updatedEmployee = {
-          ...updatedEmployee,
-
-          currentSalaryAfterTax: calculateValueAfterTax(
-            employee.currentSalaryBeforeTax,
-            value,
-            employee.taxClass,
-            false
-          ),
-          regularSalaryAfterTax: calculateValueAfterTax(
-            employee.regularSalaryBeforeTax,
-            value,
-            employee.taxClass,
+            updatedEmployee.regularSalaryBeforeTax,
+            updatedEmployee.hasChildren,
+            updatedEmployee.taxClass,
             false
           )
         };
