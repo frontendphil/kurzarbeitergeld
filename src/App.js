@@ -46,7 +46,7 @@ function App() {
 
           <Submit
             beforeSubmit={() => setPDFLinks(defaultLinks)}
-            onSuccess={(formBlob, employeesBlob) => {
+            onSuccess={([formBlob, employeesBlob]) => {
               const formObjectURL = URL.createObjectURL(formBlob);
               const employeesObjectURL = URL.createObjectURL(employeesBlob);
               setPDFLinks({form: formObjectURL, employeesList: employeesObjectURL});
