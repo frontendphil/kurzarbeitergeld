@@ -24,7 +24,12 @@ function EmployeeData({ onStateChange }) {
         <tbody>
           {employees.map((employee, index) => (
             <tr key={index} className={index % 2 !== 0 ? "bg-gray-100" : ""}>
-              <Employee index={index} removable={employees.length > 1}/>
+              <Employee
+                index={index}
+                removable={
+                  employees.length > 1 && index !== employees.length - 1
+                }
+              />
             </tr>
           ))}
         </tbody>

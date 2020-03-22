@@ -1,10 +1,14 @@
 import React from "react";
 
 import AfterTaxValue from "./AfterTaxValue";
-import { updateEmployee, removeEmployee, useDispatch, useEmployee } from "./AppContext";
+import {
+  removeEmployee,
+  updateEmployee,
+  useDispatch,
+  useEmployee
+} from "./AppContext";
 import Select from "./Select";
 import TextInput from "./TextInput";
-import trash from "./Trash.svg";
 
 function Employee({ index, removable }) {
   const {
@@ -126,12 +130,17 @@ function Employee({ index, removable }) {
         />
       </td>
 
-      {removable && <td className="p-2 border">
-        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded inline-flex items-center"
-                onClick={() => dispatch(removeEmployee(index))}>
+      <td className="p-2 border">
+        <button
+          disabled={!removable}
+          className={`bg-gray-300 text-gray-800 py-2 px-4 rounded inline-flex items-center ${
+            removable ? "hover:bg-gray-400" : "opacity-50 cursor-not-allowed"
+          }`}
+          onClick={() => dispatch(removeEmployee(index))}
+        >
           Remove
         </button>
-      </td>}
+      </td>
     </>
   );
 }
