@@ -346,8 +346,11 @@ const defaultGeneral = {
   streetNumber: "",
   zipCode: "",
   phone: "",
+  fax: "",
   email: "",
   city: "",
+
+  agency: null,
 
   ...defaultBankData
 };
