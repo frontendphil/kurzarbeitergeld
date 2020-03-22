@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { Provider } from "./AppContext";
 import EmployeeData from "./EmployeeData";
 import General from "./General";
 import Submit from "./Submit";
@@ -14,25 +15,30 @@ function App() {
   const [pdfLink, setPDFLink] = useState(null);
 
   return (
-    <div className="font-sans flex flex-col">
-      <Title1>Antrag auf Kurzarbeitergeld</Title1>
+    <Provider>
+      <div className="font-sans flex flex-col">
+        <Title1>Antrag auf Kurzarbeitergeld</Title1>
 
-      <General
-        onStateChange={setFormData}
-      />
+        <General />
 
-      <EmployeeData onStateChange={setFormData} />
+        <EmployeeData onStateChange={setFormData} />
 
-      <Summary formData={formData} />
+        <Summary formData={formData} />
 
-      {
-        pdfLink != null && <a href={pdfLink} download="antrag-kug.pdf">Download PDF</a>
-      }
-      <Submit formData={formData} onSuccess={ (pdfBlob) => {
-        const objectURL = URL.createObjectURL(pdfBlob);
-        setPDFLink(objectURL);
-      }} />
-    </div>
+        {pdfLink != null && (
+          <a href={pdfLink} download="antrag-kug.pdf">
+            Download PDF
+          </a>
+        )}
+        <Submit
+          formData={formData}
+          onSuccess={pdfBlob => {
+            const objectURL = URL.createObjectURL(pdfBlob);
+            setPDFLink(objectURL);
+          }}
+        />
+      </div>
+    </Provider>
   );
 }
 

@@ -1,33 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import AgencySelect from "./AgencySelect";
+import { updateGeneralField, useDispatch, useGeneralData } from "./AppContext";
 import BankDetails from "./BankDetails";
 import Card from "./Card";
 import TextInput from "./TextInput";
 import Title3 from "./Title3";
 
-const defaultCompany = {
-  name: "",
-  bankName: "",
-  iban: "",
-  bic: "",
-  email: "",
-  city: "",
-  agency: {
-    Anschrift: "",
-    Ort: ""
-  }
-};
-
 function General({ onStateChange }) {
-  const [company, setCompany] = useState(defaultCompany);
+  const {
+    agency,
+    name,
+    streetName,
+    streetNumber,
+    zipCode,
+    city,
+    phone,
+    fax,
+    email
+  } = useGeneralData();
 
-  useEffect(() => {
-    onStateChange(currentState => ({
-      ...currentState,
-      general: company
-    }));
-  }, [onStateChange, company]);
+  const dispatch = useDispatch();
 
   return (
     <Card>
@@ -35,14 +28,8 @@ function General({ onStateChange }) {
 
       <div className="mb-6">
         <AgencySelect
-          value={company.agency}
-          onChange={agency =>
-            setCompany({
-              ...company,
-
-              agency
-            })
-          }
+          value={agency}
+          onChange={agency => dispatch(updateGeneralField("agency", agency))}
         />
       </div>
 
@@ -53,8 +40,8 @@ function General({ onStateChange }) {
           <div className="mb-6">
             <TextInput
               label="Firmenname"
-              value={company.name}
-              onComplete={name => setCompany({ ...company, name })}
+              value={name}
+              onComplete={name => dispatch(updateGeneralField("name", name))}
             />
           </div>
 
@@ -63,9 +50,9 @@ function General({ onStateChange }) {
               <div className="mr-4">
                 <TextInput
                   label="Straße"
-                  value={company.streetName}
+                  value={streetName}
                   onComplete={streetName =>
-                    setCompany({ ...company, streetName })
+                    dispatch(updateGeneralField("streetName", streetName))
                   }
                 />
               </div>
@@ -74,9 +61,9 @@ function General({ onStateChange }) {
             <div className="w-1/4">
               <TextInput
                 label="Nr."
-                value={company.streetNumber}
+                value={streetNumber}
                 onComplete={streetNumber =>
-                  setCompany({ ...company, streetNumber })
+                  dispatch(updateGeneralField("streetNumber", streetNumber))
                 }
               />
             </div>
@@ -87,8 +74,10 @@ function General({ onStateChange }) {
               <div className="mr-4">
                 <TextInput
                   label="Postleitzahl"
-                  value={company.zipCode}
-                  onComplete={zipCode => setCompany({ ...company, zipCode })}
+                  value={zipCode}
+                  onComplete={zipCode =>
+                    dispatch(updateGeneralField("zipCode", zipCode))
+                  }
                 />
               </div>
             </div>
@@ -96,8 +85,8 @@ function General({ onStateChange }) {
             <div className="w-3/5">
               <TextInput
                 label="Stadt"
-                value={company.city}
-                onComplete={city => setCompany({ ...company, city })}
+                value={city}
+                onComplete={city => dispatch(updateGeneralField("city", city))}
               />
             </div>
           </div>
@@ -109,8 +98,10 @@ function General({ onStateChange }) {
               <div className="mr-4">
                 <TextInput
                   label="Telefon"
-                  value={company.phone}
-                  onComplete={phone => setCompany({ ...company, phone })}
+                  value={phone}
+                  onComplete={phone =>
+                    dispatch(updateGeneralField("phone", phone))
+                  }
                 />
               </div>
             </div>
@@ -118,8 +109,8 @@ function General({ onStateChange }) {
             <div className="w-1/2">
               <TextInput
                 label="Telefax"
-                value={company.fax}
-                onComplete={fax => setCompany({ ...company, fax })}
+                value={fax}
+                onComplete={fax => dispatch(updateGeneralField("fax", fax))}
               />
             </div>
           </div>
@@ -127,8 +118,8 @@ function General({ onStateChange }) {
           <div className="mb-6">
             <TextInput
               label="Email"
-              value={company.email}
-              onComplete={email => setCompany({ ...company, email })}
+              value={email}
+              onComplete={email => dispatch(updateGeneralField("email", email))}
             />
           </div>
         </div>
@@ -137,12 +128,7 @@ function General({ onStateChange }) {
       <Title3>Bankverbindung</Title3>
 
       <div className="w-1/2">
-        <BankDetails
-          onChange={bankDetails =>
-            setCompany({ ...company, ...bankDetails })
-          }
-          // TODO
-        />
+        <BankDetails />
       </div>
     </Card>
   );
