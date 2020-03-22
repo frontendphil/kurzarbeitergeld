@@ -18,12 +18,13 @@ function EmployeeData({ onStateChange }) {
             <th className="p-4">Anzahl der ausgefallenen Stunden</th>
             <th className="p-4">Soll-Entgelt</th>
             <th className="p-4">Ist-Entgelt</th>
+            <th className="p-4"></th>
           </tr>
         </thead>
         <tbody>
           {employees.map((employee, index) => (
             <tr key={index} className={index % 2 !== 0 ? "bg-gray-100" : ""}>
-              <Employee index={index} />
+              <Employee index={index} removable={employees.length > 1}/>
             </tr>
           ))}
         </tbody>

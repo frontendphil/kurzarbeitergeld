@@ -85,6 +85,11 @@ export const updateEmployee = (index, field, value) => ({
   payload: { index, field, value }
 });
 
+export const removeEmployee = (index) => ({
+  type: "REMOVE_EMPLOYEE",
+  payload: { index }
+});
+
 const appReducer = (state, action) => {
   switch (action.type) {
     case "SET_GENERAL_FIELD": {
@@ -183,6 +188,19 @@ const appReducer = (state, action) => {
             ? [...employees, defaultEmployee]
             : employees
       };
+    }
+
+    case "REMOVE_EMPLOYEE": {
+      const { index } = action.payload;
+      const employees = [
+        ...state.employees.slice(0, index),
+        ...state.employees.slice(index + 1)
+      ]
+      
+      return {
+        ...state,
+        employees: employees 
+      }
     }
 
     default: {

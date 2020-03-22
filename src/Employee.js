@@ -1,11 +1,12 @@
 import React from "react";
 
 import AfterTaxValue from "./AfterTaxValue";
-import { updateEmployee, useDispatch, useEmployee } from "./AppContext";
+import { updateEmployee, removeEmployee, useDispatch, useEmployee } from "./AppContext";
 import Select from "./Select";
 import TextInput from "./TextInput";
+import trash from "./Trash.svg";
 
-function Employee({ index }) {
+function Employee({ index, removable }) {
   const {
     name,
     insuranceNumber,
@@ -123,6 +124,13 @@ function Employee({ index }) {
           isNewState={false}
         />
       </td>
+
+      {removable && <td className="p-2 border">
+        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                onClick={() => dispatch(removeEmployee(index))}>
+          <img src={trash} height="20px" width="20px"></img>
+        </button>
+      </td>}
     </>
   );
 }
