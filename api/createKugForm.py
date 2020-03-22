@@ -5,8 +5,8 @@ import os
 import pdfrw
 import json
 
-TEMPLATE_PATH = './pdf-templates/antrag-kug.pdf'
-OUTPUT_PATH = 'kug.pdf'
+TEMPLATE_PATH = './pdf-templates/kug107.pdf'
+OUTPUT_PATH = 'kug-form.pdf'
 
 ANNOT_KEY = '/Annots'
 ANNOT_FIELD_KEY = '/TU'
@@ -22,6 +22,42 @@ class handler(BaseHTTPRequestHandler):
         content_len = int(self.headers.get('Content-Length'))
         requestBody = json.loads(self.rfile.read(content_len).decode())
         print(requestBody)
+
+
+        #TODO finalize requestBody mapping
+        # requestBody = {
+        #     "employees": [
+        #         {
+        #             "currentSalaryAfterTax": "",
+        #             "currentSalaryBeforeTax": "",
+        #             "hasChildren": False,
+        #             "insuranceNumber": "",
+        #             "lostHours": "",
+        #             "name": "",
+        #             "regularSalaryAfterTax": "",
+        #             "regularSalaryBeforeTax": "",
+        #             "taxClass": 1
+        #         }
+        #     ],
+        #     "general": {
+        #         "agency": {
+        #             "AA Bezirk": "Potsdam",
+        #             "Anschrift": "Horstweg 102-108",
+        #             "Bezeichnung": "Jobcenter Potsdam",
+        #             "Ort": "Potsdam",
+        #             "PLZ": "14478"
+        #         },
+        #         "bankName": "",
+        #         "bic": "",
+        #         "city": "Berlin",
+        #         "email": "",
+        #         "iban": "",
+        #         "name": "Test Corp.",
+        #         "streetName": "Huh",
+        #         "streetNumber": "32",
+        #         "zipCode": "43528"
+        #     }
+        # }        
 
         data_dict = {
             'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
