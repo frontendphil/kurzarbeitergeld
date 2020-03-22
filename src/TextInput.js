@@ -7,6 +7,7 @@ function TextInput(
     placeholder,
     hint,
     error,
+    disabled,
     onChange,
     onComplete,
     onBlur,
@@ -19,6 +20,31 @@ function TextInput(
   useEffect(() => {
     setInternalValue(value || "");
   }, [value]);
+
+  if (disabled) {
+    return (
+      <div>
+        {label && (
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            {label}
+          </label>
+        )}
+
+        <input
+          {...rest}
+          disabled
+          ref={ref}
+          placeholder={placeholder || label}
+          type="text"
+          className="bg-gray-100 border-gray-200 border rounded py-2 px-4 block w-full appearance-none leading-normal cursor-not-allowed"
+          value={internalValue}
+        />
+
+        {hint && <p className="text-gray-600 text-xs italic mt-2">{hint}</p>}
+        {error && <p className="text-red-500 text-xs italic mt-2">{error}</p>}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -33,7 +59,9 @@ function TextInput(
         ref={ref}
         placeholder={placeholder || label}
         type="text"
-        className="bg-gray-200 border-gray-200 focus:outline-none focus:bg-white focus:border-gray-500 border rounded py-2 px-4 block w-full appearance-none leading-normal"
+        className={`bg-gray-200  ${
+          error ? "border-red-500" : "border-gray-200"
+        } focus:outline-none focus:bg-white focus:border-gray-500 border rounded py-2 px-4 block w-full appearance-none leading-normal`}
         value={internalValue}
         onChange={({ target }) => {
           setInternalValue(target.value);

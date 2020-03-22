@@ -275,6 +275,8 @@ const exampleReducer = (state, action) => {
           email: "karl.liebknecht@spd.de",
 
           iban: "DE12500105170648489890",
+          bic: "INGDDEFFXXX",
+          bankName: "ING-DiBa",
 
           agency: {
             Bezeichnung: "Jobcenter Stadt Ansbach",

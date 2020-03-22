@@ -82,6 +82,7 @@ function AgencySelect({ value, onChange }) {
       <TextInput
         disabled
         label="Adresse"
+        hint="Wird automatisch gesetzt"
         value={value ? `${value.Anschrift} - ${value.PLZ} ${value.Ort}` : ""}
       />
     </div>
