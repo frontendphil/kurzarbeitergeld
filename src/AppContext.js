@@ -179,7 +179,7 @@ const appReducer = (state, action) => {
         ...state,
 
         employees:
-          index === employees.length - 1
+          index === employees.length - 1 && value !== ""
             ? [...employees, defaultEmployee]
             : employees
       };
