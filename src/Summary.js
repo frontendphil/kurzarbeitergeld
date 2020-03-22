@@ -74,7 +74,7 @@ function Summary() {
           target="_blank"
           rel="noreferrer noopener"
         >
-          Anhang herunterladen
+          Abrechnungsliste herunterladen
         </Link>
       </div>
     </Card>
