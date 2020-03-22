@@ -16,7 +16,7 @@ function Summary() {
       return sum;
     }
 
-    return sum + parseInt(regularSalaryAfterTax, 10);
+    return sum + parseFloat(regularSalaryAfterTax);
   }, 0);
 
   const currentSalary = employees.reduce((sum, { currentSalaryAfterTax }) => {
@@ -28,7 +28,7 @@ function Summary() {
       return sum;
     }
 
-    return sum + parseInt(currentSalaryAfterTax, 10);
+    return sum + parseFloat(currentSalaryAfterTax);
   }, 0);
 
   return (
