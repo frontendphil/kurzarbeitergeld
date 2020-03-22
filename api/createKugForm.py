@@ -43,7 +43,9 @@ class handler(BaseHTTPRequestHandler):
         #         "zipCode": "43528",
         #         "currentSalarySum": 10000.00, 
         #         "regularSalarySum": 20000.00, 
-        #         "employeesCount": 100
+        #         "employeesCount": 100,
+        #         "maleEmployeesCount": 60,
+        #         "femaleEmployeesCount": 40
         #     }
         # }        
 
@@ -69,25 +71,24 @@ class handler(BaseHTTPRequestHandler):
             'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
             '4-stellige Able': '1234', # Ableitungs-Nr
             '8-stellige Betr': 'BA123423', # Betriebsnummer
+            'Abrechnungsmona': 'März',
+            # 'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
+            # 'Anschrift der L': '', # Lohnabrechnungsstelle
+
             # map input data
             'Postleitzahl un': agency_string, # Agentur für Arbeit
             'Bezeichnung und': company_string, # Arbeitgeber
-            'Anschrift der L': '', # Lohnabrechnungsstelle
             'Telefon-Nr.': requestBody["general"]["phone"],  
             'Telefax-Nr.': requestBody["general"]["fax"],
             'E-Mail': requestBody["general"]["email"],
             'BIC': requestBody["general"]["bic"],
             'IBAN': requestBody["general"]["iban"],
             'Kreditinstitut': requestBody["general"]["bankName"],
-            # 'Korrektur-Leist': '',
-            # 'Zutreffendes bi': '',
-            #TODO 'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
             'Gesamtzahl der ': requestBody["general"]["employeesCount"],  # Beschäftigten
-            'männlich': '60',
-            'weiblich': '40',
+            'männlich': requestBody["general"]["femaleEmployeesCount"],
+            'weiblich': requestBody["general"]["maleEmployeesCount"],
             'Summe Soll-Entg': requestBody["general"]["regularSalarySum"],
             'Summe Ist-Entge': requestBody["general"]["currentSalarySum"],
-            'Abrechnungsmona': 'März',
             'Kug in Höhe von': kugTotal,
         }
 
