@@ -23,7 +23,6 @@ class handler(BaseHTTPRequestHandler):
         requestBody = json.loads(self.rfile.read(content_len).decode())
         print(requestBody)
 
-        #TODO map requestBody to data_dict
         # requestBody = {
         #     "employees": [
         #     {

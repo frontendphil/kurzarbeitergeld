@@ -23,8 +23,6 @@ class handler(BaseHTTPRequestHandler):
         requestBody = json.loads(self.rfile.read(content_len).decode())
         print(requestBody)
 
-
-        #TODO finalize requestBody mapping
         # requestBody = {
         #     "general": {
         #         "agency": {
@@ -42,11 +40,14 @@ class handler(BaseHTTPRequestHandler):
         #         "name": "Test Corp.",
         #         "streetName": "Huh",
         #         "streetNumber": "32",
-        #         "zipCode": "43528"
+        #         "zipCode": "43528",
+        #         "currentSalarySum": 10000.00, 
+        #         "regularSalarySum": 20000.00, 
+        #         "employeesCount": 100
         #     }
         # }        
 
-
+        # prepare pdf values
         agency_string = (
             f"{requestBody['general']['agency']['Bezeichnung']}; {requestBody['general']['agency']['Anschrift']}; "
             f"{requestBody['general']['agency']['PLZ']}, {requestBody['general']['agency']['Ort']}"
@@ -60,10 +61,15 @@ class handler(BaseHTTPRequestHandler):
             """
         )
 
+        kugTotal = round(requestBody["general"]["regularSalarySum"] - requestBody["general"]["currentSalarySum"], 2)
+
+        # set template values
         data_dict = {
+            #TODO use dynamic data from user
             'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
             '4-stellige Able': '1234', # Ableitungs-Nr
             '8-stellige Betr': 'BA123423', # Betriebsnummer
+            # map input data
             'Postleitzahl un': agency_string, # Agentur für Arbeit
             'Bezeichnung und': company_string, # Arbeitgeber
             'Anschrift der L': '', # Lohnabrechnungsstelle
@@ -75,14 +81,14 @@ class handler(BaseHTTPRequestHandler):
             'Kreditinstitut': requestBody["general"]["bankName"],
             # 'Korrektur-Leist': '',
             # 'Zutreffendes bi': '',
-            'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
-            'Gesamtzahl der ': '100',  # Beschäftigten
+            #TODO 'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
+            'Gesamtzahl der ': requestBody["general"]["employeesCount"],  # Beschäftigten
             'männlich': '60',
             'weiblich': '40',
-            'Summe Soll-Entg': '2000',
-            'Summe Ist-Entge': '1500',
+            'Summe Soll-Entg': requestBody["general"]["regularSalarySum"],
+            'Summe Ist-Entge': requestBody["general"]["currentSalarySum"],
             'Abrechnungsmona': 'März',
-            'Kug in Höhe von': '1000',
+            'Kug in Höhe von': kugTotal,
         }
 
         template_pdf = pdfrw.PdfReader(TEMPLATE_PATH)
