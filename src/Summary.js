@@ -61,7 +61,6 @@ function Summary() {
           <Link
             disabled={!pdfLinks.form}
             href={pdfLinks.form}
-            download="antrag-kurzarbeitergeld.pdf"
           >
             Antrag herunterladen
           </Link>
@@ -70,7 +69,6 @@ function Summary() {
         <Link
           disabled={!pdfLinks.employeesList}
           href={pdfLinks.employeesList}
-          download="antrag-kurzarbeitergeld.pdf"
         >
           Anhang herunterladen
         </Link>
