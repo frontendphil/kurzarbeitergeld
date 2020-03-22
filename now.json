@@ -1,6 +1,9 @@
 {
   "functions": {
-    "api/createKug.py": {
+    "api/createKugForm.py": {
+      "includeFiles": "pdf-templates/**"
+    },
+    "api/createKugEmployeeList.py": {
       "includeFiles": "pdf-templates/**"
     },
     "api/agencies.js": {
