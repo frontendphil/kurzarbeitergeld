@@ -61,6 +61,7 @@ function Summary() {
           <Link
             disabled={!pdfLinks.form}
             href={pdfLinks.form}
+            target="_blank"
           >
             Antrag herunterladen
           </Link>
@@ -69,6 +70,7 @@ function Summary() {
         <Link
           disabled={!pdfLinks.employeesList}
           href={pdfLinks.employeesList}
+          target="_blank"
         >
           Anhang herunterladen
         </Link>
