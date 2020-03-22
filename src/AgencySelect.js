@@ -30,7 +30,7 @@ function AgencySelect({ value, onChange }) {
         sameWidth
         node={
           focus && (
-            <div className="bg-white border shadow overflow-y-auto h-64">
+            <div className="bg-white border shadow overflow-y-auto h-64 -mt-8">
               {agencies.map((agency, index) => (
                 <div
                   role="button"
