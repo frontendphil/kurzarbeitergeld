@@ -21,7 +21,7 @@ function Link({ href, children, download, disabled }) {
 
   return (
     <a
-      className="cursor-pointer bg-blue-500 border-b-4 border-blue-700 hover:bg-blue-400 hover:border-blue-500 text-white font-bold py-2 px-4 rounded flex items-center"
+      className="cursor-pointer bg-blue-500 border-blue-700 hover:bg-blue-400 hover:border-blue-500 text-white font-bold py-2 px-4 rounded flex items-center"
       href={href}
       download={download}
     >

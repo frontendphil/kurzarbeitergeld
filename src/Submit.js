@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   showErrors,
@@ -9,6 +9,7 @@ import {
 } from "./AppContext";
 
 function Submit({ onSuccess }) {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const hasErrors = useHasErrors();
 
@@ -17,13 +18,20 @@ function Submit({ onSuccess }) {
 
   return (
     <button
-      className="bg-blue-500 border-blue-700 hover:bg-blue-400 hover:border-blue-500 text-white font-bold py-2 px-4 rounded"
+      disabled={loading}
+      className={`bg-blue-500 border-blue-700 ${
+        loading
+          ? "opacity-50 cursor-wait"
+          : "hover:bg-blue-400 hover:border-blue-500"
+      } text-white font-bold py-2 px-4 rounded`}
       onClick={async () => {
         if (hasErrors) {
           dispatch(showErrors());
 
           return;
         }
+
+        setLoading(true);
 
         const formResponse = fetch(
           "https://kurzarbeitergeld.now.sh/api/createKugForm",
@@ -50,10 +58,14 @@ function Submit({ onSuccess }) {
         const formBlob = formResponse.then(result => result.blob());
         const employeesBlob = employeesResponse.then(result => result.blob());
 
-        Promise.all([formBlob, employeesBlob]).then(onSuccess);
+        Promise.all([formBlob, employeesBlob]).then((...data) => {
+          setLoading(false);
+
+          onSuccess(...data);
+        });
       }}
     >
-      Antrag erstellen
+      {loading ? "Antrag wird erstellt..." : "Antrag erstellen"}
     </button>
   );
 }
