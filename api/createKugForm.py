@@ -85,8 +85,8 @@ class handler(BaseHTTPRequestHandler):
             'IBAN': requestBody["general"]["iban"],
             'Kreditinstitut': requestBody["general"]["bankName"],
             'Gesamtzahl der ': requestBody["general"]["employeesCount"],  # Beschäftigten
-            'männlich': requestBody["general"]["femaleEmployeesCount"],
-            'weiblich': requestBody["general"]["maleEmployeesCount"],
+            'männlich': requestBody["general"]["maleEmployeesCount"],
+            'weiblich': requestBody["general"]["femaleEmployeesCount"],
             'Summe Soll-Entg': requestBody["general"]["regularSalarySum"],
             'Summe Ist-Entge': requestBody["general"]["currentSalarySum"],
             'Kug in Höhe von': kugTotal,
