@@ -11,6 +11,7 @@ function App() {
     general: {},
     employees: []
   });
+  const [pdfLink, setPDFLink] = useState(null);
 
   return (
     <div className="font-sans flex flex-col">
@@ -24,7 +25,13 @@ function App() {
 
       <Summary formData={formData} />
 
-      <Submit formData={formData} />
+      {
+        pdfLink != null && <a href={pdfLink} download="true">Download PDF</a>
+      }
+      <Submit formData={formData} onSuccess={ (pdfBlob) => {
+        const objectURL = URL.createObjectURL(pdfBlob);
+        setPDFLink(objectURL);
+      }} />
     </div>
   );
 }

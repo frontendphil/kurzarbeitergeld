@@ -1,6 +1,6 @@
 import React from "react";
 
-function Submit({ formData }) {
+function Submit({ formData, onSuccess }) {
   return (
     <>
       <div className="m-8 w-4/5 flex justify-center">
@@ -11,7 +11,6 @@ function Submit({ formData }) {
               "https://kurzarbeitergeld.now.sh/api/createKug",
               {
                 method: "POST",
-                mode: "no-cors",
                 headers: {
                   "Content-Type": "application/json"
                 },
@@ -19,7 +18,7 @@ function Submit({ formData }) {
               }
             );
 
-            response.then(result => console.log(result));
+            response.then((result) => result.blob()).then(onSuccess);
           }}
         >
           Antrag erstellen

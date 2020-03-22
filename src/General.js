@@ -11,7 +11,12 @@ const defaultCompany = {
   bankName: "",
   iban: "",
   bic: "",
-  email: ""
+  email: "",
+  city: "",
+  agency: {
+    Anschrift: "",
+    Ort: ""
+  }
 };
 
 function General({ onStateChange }) {
