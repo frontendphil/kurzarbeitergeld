@@ -1,35 +1,11 @@
 import React from "react";
 
-import { useEmployeeData } from "./AppContext";
+import { useGeneralData } from "./AppContext";
 import Card from "./Card";
 import TextInput from "./TextInput";
 
 function Summary() {
-  const employees = useEmployeeData();
-
-  const regularSalary = employees.reduce((sum, { regularSalaryAfterTax }) => {
-    if (regularSalaryAfterTax == null) {
-      return sum;
-    }
-
-    if (regularSalaryAfterTax === "") {
-      return sum;
-    }
-
-    return sum + parseFloat(regularSalaryAfterTax);
-  }, 0);
-
-  const currentSalary = employees.reduce((sum, { currentSalaryAfterTax }) => {
-    if (currentSalaryAfterTax == null) {
-      return sum;
-    }
-
-    if (currentSalaryAfterTax === "") {
-      return sum;
-    }
-
-    return sum + parseFloat(currentSalaryAfterTax);
-  }, 0);
+  const general = useGeneralData();
 
   return (
     <Card title="Zusammenfassung">
@@ -38,21 +14,21 @@ function Summary() {
           inline="true"
           disabled
           label="Gesamtzahl der Beschäftigten"
-          value={`${employees.length - 1}`}
+          value={`${general.employeesCount}`}
         />
 
         <TextInput
           inline="true"
           disabled
           label="Summe Soll"
-          value={`${regularSalary} €`}
+          value={`${general.regularSalarySum} €`}
         />
 
         <TextInput
           inline="true"
           disabled
           label="Summe Ist"
-          value={`${currentSalary} €`}
+          value={`${general.currentSalarySum} €`}
         />
       </div>
     </Card>

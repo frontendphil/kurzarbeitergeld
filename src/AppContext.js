@@ -89,6 +89,35 @@ export const addExampleData = () => ({
   type: "ADD_EXAMPLE_DATA"
 });
 
+const regularSalarySum = (employees) => {
+  return employees.reduce((sum, { regularSalaryAfterTax }) => {
+    if (regularSalaryAfterTax == null) {
+      return sum;
+    }
+
+    if (regularSalaryAfterTax === "") {
+      return sum;
+    }
+
+    return sum + parseFloat(regularSalaryAfterTax);
+  }, 0);
+};
+
+
+const currentSalarySum = (employees) => {
+  return employees.reduce((sum, { currentSalaryAfterTax }) => {
+    if (currentSalaryAfterTax == null) {
+      return sum;
+    }
+
+    if (currentSalaryAfterTax === "") {
+      return sum;
+    }
+
+    return sum + parseFloat(currentSalaryAfterTax);
+  }, 0);
+};
+
 const dataReducer = (state, action) => {
   switch (action.type) {
     case SET_GENERAL_FIELD: {
@@ -185,19 +214,26 @@ const dataReducer = (state, action) => {
         };
       }
 
-      const employees = [
+      let employees = [
         ...state.employees.slice(0, index),
         updatedEmployee,
         ...state.employees.slice(index + 1)
       ];
 
+      employees = index === employees.length - 1 && value !== ""
+        ? [...employees, defaultEmployee]
+        : employees
+
       return {
         ...state,
+        general: {
+          ...state.general,
+          regularSalarySum: regularSalarySum(employees),
+          currentSalarySum: currentSalarySum(employees),
+          employeesCount: employees.length - 1
+        },
 
-        employees:
-          index === employees.length - 1 && value !== ""
-            ? [...employees, defaultEmployee]
-            : employees
+        employees
       };
     }
 
@@ -210,7 +246,13 @@ const dataReducer = (state, action) => {
 
       return {
         ...state,
-        employees: employees
+        general: {
+          ...state.general,
+          regularSalarySum: regularSalarySum(employees),
+          currentSalarySum: currentSalarySum(employees),
+          employeesCount: employees.length - 1
+        },
+        employees
       };
     }
 
@@ -389,6 +431,9 @@ const defaultGeneral = {
   fax: "",
   email: "",
   city: "",
+  employeesCount: 0,
+  regularSalarySum: 0,
+  currentSalarySum: 0,
 
   agency: null,
 

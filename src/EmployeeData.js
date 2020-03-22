@@ -4,7 +4,7 @@ import { useEmployeeData } from "./AppContext";
 import Card from "./Card";
 import Employee from "./Employee";
 
-function EmployeeData({ onStateChange }) {
+function EmployeeData() {
   const employees = useEmployeeData();
 
   return (
