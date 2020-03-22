@@ -59,15 +59,29 @@ class handler(BaseHTTPRequestHandler):
         #     }
         # }        
 
+
+        agency_string = (
+            f"{requestBody['general']['agency']['Bezeichnung']}; {requestBody['general']['agency']['Anschrift']}; "
+            f"{requestBody['general']['agency']['PLZ']}, {requestBody['general']['agency']['Ort']}"
+        )
+
+        company_string = (
+            f"""
+            {requestBody['general']['name']}
+            {requestBody['general']['streetName']} {requestBody['general']['streetNumber']}
+            {requestBody['general']['zipCode']} {requestBody['general']['city']}
+            """
+        )
+
         data_dict = {
             'Die 9-stellige ': '111223344', # Stamm-Nr. Kug
             '4-stellige Able': '1234', # Ableitungs-Nr
             '8-stellige Betr': 'BA123423', # Betriebsnummer
-            'Postleitzahl un': requestBody["general"]["agency"]["Anschrift"] + ", " + requestBody["general"]["agency"]["Ort"], # Agentur für Arbeit
-            'Bezeichnung und': requestBody["general"]["name"] + requestBody["general"]["city"], # Arbeitgeber
+            'Postleitzahl un': agency_string, # Agentur für Arbeit
+            'Bezeichnung und': company_string, # Arbeitgeber
             'Anschrift der L': '', # Lohnabrechnungsstelle
-            'Telefon-Nr.': '0123456789',
-            'Telefax-Nr.': '0123456789',
+            'Telefon-Nr.': requestBody["general"]["phone"],  
+            'Telefax-Nr.': requestBody["general"]["fax"],
             'E-Mail': requestBody["general"]["email"],
             'BIC': requestBody["general"]["bic"],
             'IBAN': requestBody["general"]["iban"],
@@ -76,8 +90,8 @@ class handler(BaseHTTPRequestHandler):
             # 'Zutreffendes bi': '',
             'Bezeichnung der': 'Super Abteilung', # Betriebsabteilung
             'Gesamtzahl der ': '100',  # Beschäftigten
-            'männlich': 'x',
-            'weiblich': 'x',
+            'männlich': '60',
+            'weiblich': '40',
             'Summe Soll-Entg': '2000',
             'Summe Ist-Entge': '1500',
             'Abrechnungsmona': 'März',
