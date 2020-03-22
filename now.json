@@ -3,7 +3,7 @@
     "api/createKugForm.py": {
       "includeFiles": "pdf-templates/**"
     },
-    "api/createKugEmployeeList.py": {
+    "api/createKugEmployeesList.py": {
       "includeFiles": "pdf-templates/**"
     },
     "api/agencies.js": {
