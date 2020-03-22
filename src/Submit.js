@@ -8,7 +8,7 @@ import {
   useHasErrors
 } from "./AppContext";
 
-function Submit({ formData, onSuccess }) {
+function Submit({ onSuccess }) {
   const dispatch = useDispatch();
   const hasErrors = useHasErrors();
 
@@ -25,20 +25,32 @@ function Submit({ formData, onSuccess }) {
           return;
         }
 
-        const response = await fetch(
-          "https://kurzarbeitergeld.now.sh/api/createKug",
+        const formResponse = fetch(
+          "https://kurzarbeitergeld.now.sh/api/createKugForm",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ general, employees })
+            body: JSON.stringify({ general })
           }
         );
 
-        const blob = await response.blob();
+        const employeesResponse = fetch(
+          "https://kurzarbeitergeld.now.sh/api/createKugEmployeesList",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ employees })
+          }
+        );
 
-        onSuccess(blob);
+        const formBlob = formResponse.then((result) => result.blob());
+        const employeesBlob = employeesResponse.then((result) => result.blob());
+
+        Promise.all([formBlob, employeesBlob]).then(onSuccess);
       }}
     >
       Antrag erstellen
