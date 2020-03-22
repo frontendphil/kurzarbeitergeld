@@ -387,6 +387,12 @@ const currentSalarySum = (employees) => {
   }, 0);
 };
 
+const employeesWithGenderCount = (employees, genderString) => {
+  return employees.filter(({ gender }) => gender === genderString).length
+}
+const maleEmployeesCount = (employees) => employeesWithGenderCount(employees, "m");
+const femaleEmployeesCount = (employees) => employeesWithGenderCount(employees, "w");
+
 const summaryReducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_EMPLOYEE":
@@ -396,7 +402,9 @@ const summaryReducer = (state, action) => {
         ...state.general,
         regularSalarySum: regularSalarySum(state.employees),
         currentSalarySum: currentSalarySum(state.employees),
-        employeesCount: state.employees.length - 1
+        employeesCount: state.employees.length - 1,
+        maleEmployeesCount: maleEmployeesCount(state.employees),
+        femaleEmployeesCount: femaleEmployeesCount(state.employees) 
       };
       return {
         ...state,
@@ -532,6 +540,8 @@ const defaultGeneral = {
   email: "",
   city: "",
   employeesCount: 0,
+  maleEmployeesCount: 0,
+  femaleEmployeesCount: 0,
   regularSalarySum: 0,
   currentSalarySum: 0,
 
