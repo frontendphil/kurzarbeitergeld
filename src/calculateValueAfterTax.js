@@ -1,22 +1,4 @@
-import React, { useMemo } from "react";
-
-import TextInput from "./TextInput";
 import AfterTaxTable from "./after-tax-values";
-
-function AfterTaxValue({ beforeTax, hasChildren, taxClass, isNewState }) {
-  let afterTaxValue = useMemo(
-    () => calculateValueAfterTax(beforeTax, hasChildren, taxClass, isNewState),
-    [beforeTax, hasChildren, isNewState, taxClass]
-  );
-
-  return (
-    <TextInput
-      disabled
-      label="Netto"
-      value={afterTaxValue ? `${afterTaxValue} €` : ""}
-    />
-  );
-}
 
 // "new state" -> "neue Bundesländer" :-O
 export function calculateValueAfterTax(
@@ -42,5 +24,3 @@ export function calculateValueAfterTax(
   let key = hasChildren ? "leistungssatz_1" : "leistungssatz_2";
   return entry[key][taxClass - 1];
 }
-
-export default AfterTaxValue;

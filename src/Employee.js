@@ -1,11 +1,11 @@
 import React from "react";
 
-import AfterTaxValue from "./AfterTaxValue";
 import {
   removeEmployee,
   updateEmployee,
   useDispatch,
-  useEmployee
+  useEmployee,
+  useEmployeeError
 } from "./AppContext";
 import Select from "./Select";
 import TextInput from "./TextInput";
@@ -19,8 +19,11 @@ function Employee({ index, removable }) {
     hasChildren,
     lostHours,
     regularSalaryBeforeTax,
-    currentSalaryBeforeTax
+    regularSalaryAfterTax,
+    currentSalaryBeforeTax,
+    currentSalaryAfterTax
   } = useEmployee(index);
+  const errors = useEmployeeError(index);
   const dispatch = useDispatch();
 
   return (
@@ -31,6 +34,7 @@ function Employee({ index, removable }) {
             <TextInput
               label="Vor- und Nachname"
               value={name}
+              error={errors.name}
               onComplete={name => dispatch(updateEmployee(index, "name", name))}
             />
           </div>
@@ -39,6 +43,7 @@ function Employee({ index, removable }) {
             <TextInput
               label="Versicherungsnummer"
               hint="12 Zeichen"
+              error={errors.insuranceNumber}
               value={insuranceNumber}
               onComplete={insuranceNumber =>
                 dispatch(
@@ -53,6 +58,7 @@ function Employee({ index, removable }) {
       <td className="p-2 border">
         <Select
           value={gender}
+          error={errors.gender}
           onChange={({ target }) =>
             dispatch(updateEmployee(index, "gender", target.value))
           }
@@ -69,6 +75,7 @@ function Employee({ index, removable }) {
       <td className="p-2 border">
         <Select
           value={taxClass}
+          error={errors.taxClass}
           onChange={({ target }) =>
             dispatch(updateEmployee(index, "taxClass", target.value))
           }
@@ -95,6 +102,7 @@ function Employee({ index, removable }) {
         <TextInput
           placeholder="Anzahl Stunden"
           value={lostHours}
+          error={errors.lostHours}
           onComplete={lostHours =>
             dispatch(updateEmployee(index, "lostHours", lostHours))
           }
@@ -105,6 +113,7 @@ function Employee({ index, removable }) {
           <TextInput
             label="Brutto"
             value={regularSalaryBeforeTax}
+            error={errors.regularSalaryBeforeTax}
             onComplete={regularSalaryBeforeTax =>
               dispatch(
                 updateEmployee(
@@ -117,11 +126,10 @@ function Employee({ index, removable }) {
           />
         </div>
 
-        <AfterTaxValue
-          beforeTax={regularSalaryBeforeTax}
-          taxClass={taxClass}
-          hasChildren={hasChildren}
-          isNewState={false}
+        <TextInput
+          disabled
+          label="Leistungssatz"
+          value={regularSalaryAfterTax ? `${regularSalaryAfterTax} €` : ""}
         />
       </td>
       <td className="p-2 border">
@@ -129,6 +137,7 @@ function Employee({ index, removable }) {
           <TextInput
             label="Brutto"
             value={currentSalaryBeforeTax}
+            error={errors.currentSalaryBeforeTax}
             onComplete={currentSalaryBeforeTax =>
               dispatch(
                 updateEmployee(
@@ -141,11 +150,10 @@ function Employee({ index, removable }) {
           />
         </div>
 
-        <AfterTaxValue
-          beforeTax={currentSalaryBeforeTax}
-          taxClass={taxClass}
-          hasChildren={hasChildren}
-          isNewState={false}
+        <TextInput
+          disabled
+          label="Leistungssatz"
+          value={currentSalaryAfterTax ? `${currentSalaryAfterTax} €` : ""}
         />
       </td>
 

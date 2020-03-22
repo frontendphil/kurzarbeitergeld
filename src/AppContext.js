@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-import { calculateValueAfterTax } from "./AfterTaxValue";
+import { calculateValueAfterTax } from "./calculateValueAfterTax";
 
 export const useGeneralData = () => {
   const [{ general }] = useContext(AppContext);
@@ -34,6 +34,16 @@ export const useEmployee = index => {
   const employees = useEmployeeData();
 
   return employees[index];
+};
+
+export const useEmployeeError = index => {
+  const [{ validationErrors, showErrors }] = useContext(AppContext);
+
+  if (!showErrors) {
+    return {};
+  }
+
+  return validationErrors.employees[index];
 };
 
 export const useDispatch = () => {
@@ -220,20 +230,69 @@ const dataReducer = (state, action) => {
 
 const validationReducer = (state, action) => {
   switch (action.type) {
-    case "ADD_EXAMPLE_DATA":
-    case SET_GENERAL_FIELD: {
-      const general = getGeneralErrors(state.general);
+    case "ADD_EXAMPLE_DATA": {
+      const updatedValidationErrors = {
+        ...state.validationErrors,
+
+        general: getGeneralErrors(state.general),
+        employees: state.employees.map((employee, index) =>
+          index !== state.employees.length - 1
+            ? getEmployeeErrors(employee)
+            : {}
+        )
+      };
 
       return {
         ...state,
 
-        hasValidationErrors: Object.keys(general).length > 0,
+        hasValidationErrors: hasValidationErrors(updatedValidationErrors),
 
-        validationErrors: {
-          ...state.validationErrors,
+        validationErrors: updatedValidationErrors
+      };
+    }
 
-          general
-        }
+    case SET_GENERAL_FIELD: {
+      const updatedValidationErrors = {
+        ...state.validationErrors,
+
+        general: getGeneralErrors(state.general)
+      };
+
+      return {
+        ...state,
+
+        hasValidationErrors: hasValidationErrors(updatedValidationErrors),
+
+        validationErrors: updatedValidationErrors
+      };
+    }
+
+    case "UPDATE_EMPLOYEE": {
+      const { index } = action.payload;
+
+      const employee = state.employees[index];
+
+      const updatedEmployeeErrors = [
+        ...state.validationErrors.employees.slice(0, index),
+        index !== state.employees.length - 1 ? getEmployeeErrors(employee) : {},
+        ...state.validationErrors.employees.slice(index + 1)
+      ];
+
+      const updatedValidationErrors = {
+        ...state.validationErrors,
+
+        employees:
+          state.validationErrors.employees.length !== state.employees.length
+            ? [...updatedEmployeeErrors, {}]
+            : updatedEmployeeErrors
+      };
+
+      return {
+        ...state,
+
+        hasValidationErrors: hasValidationErrors(updatedValidationErrors),
+
+        validationErrors: updatedValidationErrors
       };
     }
 
@@ -254,6 +313,10 @@ const validationReducer = (state, action) => {
     }
   }
 };
+
+const hasValidationErrors = ({ general, employees }) =>
+  Object.keys(general).length > 0 ||
+  employees.some(employee => Object.keys(employee).length > 0);
 
 const exampleReducer = (state, action) => {
   switch (action.type) {
@@ -353,10 +416,10 @@ const phil = {
   taxClass: "3",
   gender: "m",
   hasChildren: true,
-  lostHours: 20,
-  regularSalaryBeforeTax: 3500,
+  lostHours: "20",
+  regularSalaryBeforeTax: "3500",
   regularSalaryAfterTax: calculateValueAfterTax(3500, true, "3", false),
-  currentSalaryBeforeTax: 1500,
+  currentSalaryBeforeTax: "1500",
   currentSalaryAfterTax: calculateValueAfterTax(1500, true, "3", false)
 };
 
@@ -366,10 +429,10 @@ const daniel = {
   taxClass: "4",
   gender: "m",
   hasChildren: false,
-  lostHours: 20,
-  regularSalaryBeforeTax: 3200,
+  lostHours: "20",
+  regularSalaryBeforeTax: "3200",
   regularSalaryAfterTax: calculateValueAfterTax(3200, false, "4", false),
-  currentSalaryBeforeTax: 1300,
+  currentSalaryBeforeTax: "1300",
   currentSalaryAfterTax: calculateValueAfterTax(1300, false, "4", false)
 };
 
@@ -379,10 +442,10 @@ const peter = {
   taxClass: "1",
   gender: "m",
   hasChildren: false,
-  lostHours: 20,
-  regularSalaryBeforeTax: 4000,
+  lostHours: "20",
+  regularSalaryBeforeTax: "4000",
   regularSalaryAfterTax: calculateValueAfterTax(4000, false, "1", false),
-  currentSalaryBeforeTax: 1700,
+  currentSalaryBeforeTax: "1700",
   currentSalaryAfterTax: calculateValueAfterTax(1700, false, "1", false)
 };
 
@@ -393,7 +456,7 @@ const compose = (...reducers) => (state, action) =>
 
 const appReducer = compose(dataReducer, exampleReducer, summaryReducer, validationReducer);
 
-const mandatoryFields = [
+const mandatoryGeneralFields = [
   "name",
   "streetName",
   "streetNumber",
@@ -406,7 +469,7 @@ const mandatoryFields = [
 const getGeneralErrors = general => {
   const errors = {};
 
-  mandatoryFields.forEach(field => {
+  mandatoryGeneralFields.forEach(field => {
     if (general[field].trim() === "") {
       errors[field] = REQUIRED_ERROR;
     }
@@ -414,6 +477,31 @@ const getGeneralErrors = general => {
 
   if (!general.agency) {
     errors.agency = "Bitte wählen Sie ein Jobcenter aus";
+  }
+
+  return errors;
+};
+
+const mandatoryEmployeeFields = [
+  "name",
+  "insuranceNumber",
+  "gender",
+  "lostHours",
+  "regularSalaryBeforeTax",
+  "currentSalaryBeforeTax"
+];
+
+const getEmployeeErrors = employee => {
+  const errors = {};
+
+  mandatoryEmployeeFields.forEach(field => {
+    if (employee[field].trim() === "") {
+      errors[field] = REQUIRED_ERROR;
+    }
+  });
+
+  if (employee.taxClass === "0") {
+    errors.taxClass = REQUIRED_ERROR;
   }
 
   return errors;
@@ -459,7 +547,8 @@ const defaultAppContext = {
   hasValidationErrors: true,
 
   validationErrors: {
-    general: getGeneralErrors(defaultGeneral)
+    general: getGeneralErrors(defaultGeneral),
+    employees: [{}]
   }
 };
 
