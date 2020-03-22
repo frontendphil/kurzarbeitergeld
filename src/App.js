@@ -9,7 +9,7 @@ import Title1 from "./Title1";
 function App() {
   return (
     <Provider>
-      <div className="font-sans flex flex-col">
+      <div className="font-sans flex flex-col mb-64">
         <Title1>Antrag auf Kurzarbeitergeld</Title1>
 
         <General />
