@@ -15,6 +15,7 @@ function Employee({ index, removable }) {
     name,
     insuranceNumber,
     taxClass,
+    gender,
     hasChildren,
     lostHours,
     regularSalaryBeforeTax,
@@ -48,6 +49,23 @@ function Employee({ index, removable }) {
           </div>
         </div>
       </td>
+
+      <td className="p-2 border">
+        <Select
+          value={gender}
+          onChange={({ target }) =>
+            dispatch(updateEmployee(index, "gender", target.value))
+          }
+        >
+          <option value="">---</option>
+          <option value="m">Männlich</option>
+          <option value="w">Weiblich</option>
+          <option disabled value="d">
+            Divers
+          </option>
+        </Select>
+      </td>
+
       <td className="p-2 border">
         <Select
           value={taxClass}
@@ -55,6 +73,7 @@ function Employee({ index, removable }) {
             dispatch(updateEmployee(index, "taxClass", target.value))
           }
         >
+          <option value="0">---</option>
           <option value="1">I</option>
           <option value="2">II</option>
           <option value="3">III</option>

@@ -13,6 +13,7 @@ function EmployeeData() {
         <thead>
           <tr>
             <th className="p-4">Mitarbeiter</th>
+            <th className="p-4">Geschlecht</th>
             <th className="p-4">Steuerklasse</th>
             <th className="p-4">Kinder (Ja/Nein)</th>
             <th className="p-4">Anzahl der ausgefallenen Stunden</th>
