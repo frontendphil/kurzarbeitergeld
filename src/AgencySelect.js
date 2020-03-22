@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Stick from "react-stick";
 
+import { useGeneralErrors } from "./AppContext";
 import TextInput from "./TextInput";
 
 function AgencySelect({ value, onChange }) {
@@ -8,6 +9,8 @@ function AgencySelect({ value, onChange }) {
   const [query, setQuery] = useState("");
   const [focus, setFocus] = useState(false);
   const [selectionIndex, setSelectionIndex] = useState(-1);
+
+  const errors = useGeneralErrors();
 
   const agencies = useAgencies(query);
 
@@ -52,6 +55,7 @@ function AgencySelect({ value, onChange }) {
       >
         <TextInput
           ref={input}
+          error={errors.agency}
           label="Jobcenter"
           placeholder="Suchen Sie nach PLZ oder Ort"
           value={focus || !value ? query : value.Bezeichnung}

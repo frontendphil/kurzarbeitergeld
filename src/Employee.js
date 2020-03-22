@@ -33,6 +33,7 @@ function Employee({ index, removable }) {
           <div className="flex-1">
             <TextInput
               label="Versicherungsnummer"
+              hint="12 Zeichen"
               value={insuranceNumber}
               onComplete={insuranceNumber =>
                 dispatch(

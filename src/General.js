@@ -1,13 +1,18 @@
 import React from "react";
 
 import AgencySelect from "./AgencySelect";
-import { updateGeneralField, useDispatch, useGeneralData } from "./AppContext";
+import {
+  updateGeneralField,
+  useDispatch,
+  useGeneralData,
+  useGeneralErrors
+} from "./AppContext";
 import BankDetails from "./BankDetails";
 import Card from "./Card";
 import TextInput from "./TextInput";
 import Title3 from "./Title3";
 
-function General({ onStateChange }) {
+function General() {
   const {
     agency,
     name,
@@ -19,7 +24,7 @@ function General({ onStateChange }) {
     fax,
     email
   } = useGeneralData();
-
+  const errors = useGeneralErrors();
   const dispatch = useDispatch();
 
   return (
@@ -41,6 +46,7 @@ function General({ onStateChange }) {
             <TextInput
               label="Firmenname"
               value={name}
+              error={errors.name}
               onComplete={name => dispatch(updateGeneralField("name", name))}
             />
           </div>
@@ -51,6 +57,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Straße"
                   value={streetName}
+                  error={errors.streetName}
                   onComplete={streetName =>
                     dispatch(updateGeneralField("streetName", streetName))
                   }
@@ -62,6 +69,7 @@ function General({ onStateChange }) {
               <TextInput
                 label="Nr."
                 value={streetNumber}
+                error={errors.streetNumber}
                 onComplete={streetNumber =>
                   dispatch(updateGeneralField("streetNumber", streetNumber))
                 }
@@ -75,6 +83,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Postleitzahl"
                   value={zipCode}
+                  error={errors.zipCode}
                   onComplete={zipCode =>
                     dispatch(updateGeneralField("zipCode", zipCode))
                   }
@@ -86,6 +95,7 @@ function General({ onStateChange }) {
               <TextInput
                 label="Stadt"
                 value={city}
+                error={errors.city}
                 onComplete={city => dispatch(updateGeneralField("city", city))}
               />
             </div>
@@ -99,6 +109,7 @@ function General({ onStateChange }) {
                 <TextInput
                   label="Telefon"
                   value={phone}
+                  error={errors.phone}
                   onComplete={phone =>
                     dispatch(updateGeneralField("phone", phone))
                   }

@@ -1,7 +1,17 @@
 import React, { forwardRef, useEffect, useState } from "react";
 
 function TextInput(
-  { value, label, placeholder, onChange, onComplete, onBlur, ...rest },
+  {
+    value,
+    label,
+    placeholder,
+    hint,
+    error,
+    onChange,
+    onComplete,
+    onBlur,
+    ...rest
+  },
   ref
 ) {
   const [internalValue, setInternalValue] = useState(value || "");
@@ -42,6 +52,9 @@ function TextInput(
           }
         }}
       />
+
+      {hint && <p class="text-gray-600 text-xs italic mt-2">{hint}</p>}
+      {error && <p class="text-red-500 text-xs italic mt-2">{error}</p>}
     </div>
   );
 }

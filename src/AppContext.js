@@ -2,41 +2,26 @@ import React, { createContext, useContext, useReducer } from "react";
 
 import { calculateValueAfterTax } from "./AfterTaxValue";
 
-const defaultEmployee = {
-  name: "",
-  insuranceNumber: "",
-  taxClass: 1,
-  hasChildren: false,
-  lostHours: "",
-  regularSalaryBeforeTax: "",
-  regularSalaryAfterTax: "",
-  currentSalaryBeforeTax: "",
-  currentSalaryAfterTax: ""
-};
-
-const defaultAppContext = {
-  general: {
-    name: "",
-    bankName: "",
-    iban: "",
-    bic: "",
-    email: "",
-    city: ""
-  },
-  employees: [defaultEmployee]
-};
-
-const AppContext = createContext([
-  defaultAppContext,
-  () => {
-    throw new Error("cannot dispatch outside provider.");
-  }
-]);
-
 export const useGeneralData = () => {
   const [{ general }] = useContext(AppContext);
 
   return general;
+};
+
+export const useGeneralErrors = () => {
+  const [{ validationErrors, showErrors }] = useContext(AppContext);
+
+  if (!showErrors) {
+    return {};
+  }
+
+  return validationErrors.general;
+};
+
+export const useHasErrors = () => {
+  const [{ hasValidationErrors }] = useContext(AppContext);
+
+  return hasValidationErrors;
 };
 
 export const useEmployeeData = () => {
@@ -67,8 +52,10 @@ export const Provider = ({ children }) => {
   );
 };
 
+const SET_GENERAL_FIELD = "SET_GENERAL_FIELD";
+
 export const updateGeneralField = (field, value) => ({
-  type: "SET_GENERAL_FIELD",
+  type: SET_GENERAL_FIELD,
   payload: {
     field,
     value
@@ -85,14 +72,22 @@ export const updateEmployee = (index, field, value) => ({
   payload: { index, field, value }
 });
 
-export const removeEmployee = (index) => ({
+export const removeEmployee = index => ({
   type: "REMOVE_EMPLOYEE",
   payload: { index }
 });
 
-const appReducer = (state, action) => {
+export const showErrors = () => ({
+  type: "SHOW_ERRORS"
+});
+
+export const resetBankData = () => ({
+  type: "RESET_BANK_DATA"
+});
+
+const dataReducer = (state, action) => {
   switch (action.type) {
-    case "SET_GENERAL_FIELD": {
+    case SET_GENERAL_FIELD: {
       const { field, value } = action.payload;
 
       return {
@@ -101,6 +96,18 @@ const appReducer = (state, action) => {
         general: {
           ...state.general,
           [field]: value
+        }
+      };
+    }
+
+    case "RESET_BANK_DATA": {
+      return {
+        ...state,
+
+        general: {
+          ...state.general,
+
+          ...defaultBankData
         }
       };
     }
@@ -195,16 +202,129 @@ const appReducer = (state, action) => {
       const employees = [
         ...state.employees.slice(0, index),
         ...state.employees.slice(index + 1)
-      ]
-      
+      ];
+
       return {
         ...state,
-        employees: employees 
-      }
+        employees: employees
+      };
     }
 
     default: {
-      throw new Error(`Unknown action ${action.type}`);
+      return state;
     }
   }
 };
+
+const validationReducer = (state, action) => {
+  switch (action.type) {
+    case SET_GENERAL_FIELD: {
+      const general = getGeneralErrors(state.general);
+
+      return {
+        ...state,
+
+        hasValidationErrors: Object.keys(general).length > 0,
+
+        validationErrors: {
+          ...state.validationErrors,
+
+          general
+        }
+      };
+    }
+
+    case "SHOW_ERRORS": {
+      return {
+        ...state,
+
+        showErrors: true,
+
+        validationErrors: {
+          ...state.validationErrors
+        }
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
+const REQUIRED_ERROR = "Bitte geben Sie einen Wert ein";
+
+const compose = (...reducers) => (state, action) =>
+  reducers.reduce((result, reducer) => reducer(result, action), state);
+
+const appReducer = compose(dataReducer, validationReducer);
+
+const mandatoryFields = [
+  "name",
+  "streetName",
+  "streetNumber",
+  "zipCode",
+  "city",
+  "phone",
+  "iban"
+];
+
+const getGeneralErrors = general => {
+  const errors = {};
+
+  mandatoryFields.forEach(field => {
+    if (general[field].trim() === "") {
+      errors[field] = REQUIRED_ERROR;
+    }
+  });
+
+  if (!general.agency) {
+    errors.agency = "Bitte wählen Sie ein Jobcenter aus";
+  }
+
+  return errors;
+};
+
+const defaultEmployee = {
+  name: "",
+  insuranceNumber: "",
+  taxClass: 1,
+  hasChildren: false,
+  lostHours: "",
+  regularSalaryBeforeTax: "",
+  regularSalaryAfterTax: "",
+  currentSalaryBeforeTax: "",
+  currentSalaryAfterTax: ""
+};
+
+const defaultBankData = { iban: "", bankName: "", bic: "" };
+
+const defaultGeneral = {
+  name: "",
+  streetName: "",
+  streetNumber: "",
+  zipCode: "",
+  phone: "",
+  email: "",
+  city: "",
+
+  ...defaultBankData
+};
+
+const defaultAppContext = {
+  general: defaultGeneral,
+  employees: [defaultEmployee],
+
+  hasValidationErrors: true,
+
+  validationErrors: {
+    general: getGeneralErrors(defaultGeneral)
+  }
+};
+
+const AppContext = createContext([
+  defaultAppContext,
+  () => {
+    throw new Error("cannot dispatch outside provider.");
+  }
+]);

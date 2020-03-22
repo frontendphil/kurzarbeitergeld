@@ -1,13 +1,18 @@
 import React, { Fragment } from "react";
 
-import { updateBankDetails, useDispatch, useGeneralData } from "./AppContext";
+import {
+  resetBankData,
+  updateBankDetails,
+  useDispatch,
+  useGeneralData,
+  useGeneralErrors
+} from "./AppContext";
 import TextInput from "./TextInput";
-
-const defaultBankData = { iban: "", bankName: "", bic: "" };
 
 function BankDetails({ onChange }) {
   const dispatch = useDispatch();
   const { iban, bic, bankName } = useGeneralData();
+  const errors = useGeneralErrors();
 
   return (
     <Fragment>
@@ -15,6 +20,7 @@ function BankDetails({ onChange }) {
         <TextInput
           label="IBAN"
           value={iban}
+          error={errors.iban}
           onComplete={iban => {
             if (iban) {
               fetch(`https://openiban.com/validate/${iban}?getBIC=true`).then(
@@ -30,7 +36,7 @@ function BankDetails({ onChange }) {
 
                     dispatch(updateBankDetails(newBankData));
                   } else {
-                    dispatch(updateBankDetails(defaultBankData));
+                    dispatch(resetBankData());
                   }
                 }
               );
