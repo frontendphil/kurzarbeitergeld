@@ -17,7 +17,7 @@ function Submit({ onSuccess }) {
 
   return (
     <button
-      className="bg-blue-500 border-b-4 border-blue-700 hover:bg-blue-400 hover:border-blue-500 text-white font-bold py-2 px-4 rounded"
+      className="bg-blue-500 border-blue-700 hover:bg-blue-400 hover:border-blue-500 text-white font-bold py-2 px-4 rounded"
       onClick={async () => {
         if (hasErrors) {
           dispatch(showErrors());
@@ -47,8 +47,8 @@ function Submit({ onSuccess }) {
           }
         );
 
-        const formBlob = formResponse.then((result) => result.blob());
-        const employeesBlob = employeesResponse.then((result) => result.blob());
+        const formBlob = formResponse.then(result => result.blob());
+        const employeesBlob = employeesResponse.then(result => result.blob());
 
         Promise.all([formBlob, employeesBlob]).then(onSuccess);
       }}

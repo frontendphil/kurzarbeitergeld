@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
+import AddExampleData from "./AddExampleData";
 import { useGeneralData } from "./AppContext";
 import Card from "./Card";
+import Link from "./Link";
+import Submit from "./Submit";
 import TextInput from "./TextInput";
+
+const defaultLinks = { form: null, employeesList: null };
 
 function Summary() {
   const general = useGeneralData();
+  const [pdfLinks, setPDFLinks] = useState(defaultLinks);
 
   return (
     <Card title="Zusammenfassung">
@@ -30,6 +36,44 @@ function Summary() {
           label="Summe Ist"
           value={`${general.currentSalarySum} €`}
         />
+      </div>
+
+      <div className="mt-8  flex justify-end">
+        <div className="mr-4">
+          <AddExampleData />
+        </div>
+
+        <div className="mr-4">
+          <Submit
+            beforeSubmit={() => setPDFLinks(defaultLinks)}
+            onSuccess={([formBlob, employeesBlob]) => {
+              const formObjectURL = URL.createObjectURL(formBlob);
+              const employeesObjectURL = URL.createObjectURL(employeesBlob);
+              setPDFLinks({
+                form: formObjectURL,
+                employeesList: employeesObjectURL
+              });
+            }}
+          />
+        </div>
+
+        <div className="mr-4">
+          <Link
+            disabled={!pdfLinks.form}
+            href={pdfLinks.form}
+            download="antrag-kurzarbeitergeld.pdf"
+          >
+            Antrag herunterladen
+          </Link>
+        </div>
+
+        <Link
+          disabled={!pdfLinks.employeesList}
+          href={pdfLinks.employeesList}
+          download="antrag-kurzarbeitergeld.pdf"
+        >
+          Anhang herunterladen
+        </Link>
       </div>
     </Card>
   );
