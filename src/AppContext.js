@@ -89,35 +89,6 @@ export const addExampleData = () => ({
   type: "ADD_EXAMPLE_DATA"
 });
 
-const regularSalarySum = (employees) => {
-  return employees.reduce((sum, { regularSalaryAfterTax }) => {
-    if (regularSalaryAfterTax == null) {
-      return sum;
-    }
-
-    if (regularSalaryAfterTax === "") {
-      return sum;
-    }
-
-    return sum + parseFloat(regularSalaryAfterTax);
-  }, 0);
-};
-
-
-const currentSalarySum = (employees) => {
-  return employees.reduce((sum, { currentSalaryAfterTax }) => {
-    if (currentSalaryAfterTax == null) {
-      return sum;
-    }
-
-    if (currentSalaryAfterTax === "") {
-      return sum;
-    }
-
-    return sum + parseFloat(currentSalaryAfterTax);
-  }, 0);
-};
-
 const dataReducer = (state, action) => {
   switch (action.type) {
     case SET_GENERAL_FIELD: {
@@ -214,26 +185,17 @@ const dataReducer = (state, action) => {
         };
       }
 
-      let employees = [
+      const employees = [
         ...state.employees.slice(0, index),
         updatedEmployee,
         ...state.employees.slice(index + 1)
       ];
 
-      employees = index === employees.length - 1 && value !== ""
-        ? [...employees, defaultEmployee]
-        : employees
-
       return {
         ...state,
-        general: {
-          ...state.general,
-          regularSalarySum: regularSalarySum(employees),
-          currentSalarySum: currentSalarySum(employees),
-          employeesCount: employees.length - 1
-        },
-
-        employees
+        employees: index === employees.length - 1 && value !== ""
+          ? [...employees, defaultEmployee]
+          : employees
       };
     }
 
@@ -246,12 +208,6 @@ const dataReducer = (state, action) => {
 
       return {
         ...state,
-        general: {
-          ...state.general,
-          regularSalarySum: regularSalarySum(employees),
-          currentSalarySum: currentSalarySum(employees),
-          employeesCount: employees.length - 1
-        },
         employees
       };
     }
@@ -339,6 +295,58 @@ const exampleReducer = (state, action) => {
   }
 };
 
+const regularSalarySum = (employees) => {
+  return employees.reduce((sum, { regularSalaryAfterTax }) => {
+    if (regularSalaryAfterTax == null) {
+      return sum;
+    }
+
+    if (regularSalaryAfterTax === "") {
+      return sum;
+    }
+
+    return sum + parseFloat(regularSalaryAfterTax);
+  }, 0);
+};
+
+
+const currentSalarySum = (employees) => {
+  return employees.reduce((sum, { currentSalaryAfterTax }) => {
+    if (currentSalaryAfterTax == null) {
+      return sum;
+    }
+
+    if (currentSalaryAfterTax === "") {
+      return sum;
+    }
+
+    return sum + parseFloat(currentSalaryAfterTax);
+  }, 0);
+};
+
+const summaryReducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_EMPLOYEE":
+    case "REMOVE_EMPLOYEE":
+    case "ADD_EXAMPLE_DATA": {
+      const general = {
+        ...state.general,
+        regularSalarySum: regularSalarySum(state.employees),
+        currentSalarySum: currentSalarySum(state.employees),
+        employeesCount: state.employees.length - 1
+      };
+      return {
+        ...state,
+        general
+      }
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
 const phil = {
   name: "Philipp Giese",
   insuranceNumber: "VD-123456789",
@@ -380,7 +388,7 @@ const REQUIRED_ERROR = "Bitte geben Sie einen Wert ein";
 const compose = (...reducers) => (state, action) =>
   reducers.reduce((result, reducer) => reducer(result, action), state);
 
-const appReducer = compose(dataReducer, exampleReducer, validationReducer);
+const appReducer = compose(dataReducer, exampleReducer, summaryReducer, validationReducer);
 
 const mandatoryFields = [
   "name",
