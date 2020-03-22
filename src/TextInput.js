@@ -4,10 +4,10 @@ function TextInput(
   { value, label, placeholder, inline, onChange, onComplete, onBlur, ...rest },
   ref
 ) {
-  const [internalValue, setInternalValue] = useState(value);
+  const [internalValue, setInternalValue] = useState(value || "");
 
   useEffect(() => {
-    setInternalValue(value);
+    setInternalValue(value || "");
   }, [value]);
 
   return (
