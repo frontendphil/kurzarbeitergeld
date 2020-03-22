@@ -1,6 +1,6 @@
 import React from "react";
 
-function Link({ href, children, download, disabled }) {
+function Link({ href, children, download, disabled, ...rest }) {
   if (disabled) {
     return (
       <button
@@ -24,6 +24,7 @@ function Link({ href, children, download, disabled }) {
       className="cursor-pointer bg-blue-500 border-blue-700 hover:bg-blue-400 hover:border-blue-500 text-white font-bold py-2 px-4 rounded flex items-center"
       href={href}
       download={download}
+      {...rest}
     >
       <svg
         class="fill-current w-4 h-4 mr-2"
