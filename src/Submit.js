@@ -43,7 +43,7 @@ function Submit({ onSuccess }) {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ employees })
+            body: JSON.stringify({ employees: employees.slice(0, -1) })
           }
         );
 
