@@ -52,34 +52,40 @@ class handler(BaseHTTPRequestHandler):
         # }        
 
         data_dict = {
+            #TODO use dynamic data from user
             'Die 9-stellige Stamm-Nr. Kug besteht\r1\) aus dem vorbelegten Buchstaben K und 2\) aus dem 8-stelligen Ausfüllfeld. Bitte Stamm-Nr. Kug eingeben': '111223344', # Stamm-Nr. Kug
             'Ableitungs-Nr. vierstellig': '1234', # Ableitungs-Nr
             'Abrechnungsmonat:': 'März'
         }
 
         for employeeNumber, employee in enumerate(requestBody["employees"], start=1):
+            # calculate dynamic values
             rowNumber = employeeNumber + 2
             if employee["hasChildren"]:
                 leistungsSatz = 1
             else:
                 leistungsSatz = 2
+            kug = round(employee["regularSalaryAfterTax"] - employee["currentSalaryAfterTax"], 2)
+            #TODO take care of lost hours due to ilness
+            lostHoursTotal = employee["lostHours"]
+
+            # fill data dictrionay
             data_dict[f"Reihe {rowNumber} Spalte 1: Hier wird automatisch die laufende Nummer eingetragen"] = employeeNumber
             data_dict[f"Reihe {rowNumber} Spalte 2: Name, Vorname"] = employee["name"]
             data_dict[f"Reihe {rowNumber} Spalte 2: Versicherungsnummer 12-stellig"] = employee["insuranceNumber"]
-            # data_dict[f"Reihe {rowNumber} Spalte 2: Faktor 0,"] = employeeNumber[""]
-            # data_dict[f"Reihe {rowNumber} Spalte 2: Geben Sie die restlichen drei Ziffern bezüglich des Faktors ein"] = employeeNumber[""]
+            #TODO data_dict[f"Reihe {rowNumber} Spalte 2: Faktor 0,"] = employee[""]
+            #TODO data_dict[f"Reihe {rowNumber} Spalte 2: Geben Sie die restlichen drei Ziffern bezüglich des Faktors ein"] = employee[""]
             data_dict[f"Reihe {rowNumber} Spalte 3: Umfang des Arbeitsausfalls: Anzahl der Kug-Ausfallstunden"] = employee["lostHours"]
-            # data_dict[f"Reihe {rowNumber} Spalte 3: Umfang des Arbeitsausfalls: Anzahl der Krankengeldstunden"] = "0"
-            data_dict[f"Reihe {rowNumber} Spalte 3: Umfang des Arbeitsausfalls: Hier werden die Kug-Ausfallstunden und die Krankengeldstunden automatisch summiert"] = employee["lostHours"]
+            data_dict[f"Reihe {rowNumber} Spalte 3: Umfang des Arbeitsausfalls: Anzahl der Krankengeldstunden"] = "0"
+            data_dict[f"Reihe {rowNumber} Spalte 3: Umfang des Arbeitsausfalls: Hier werden die Kug-Ausfallstunden und die Krankengeldstunden automatisch summiert"] = lostHoursTotal
             data_dict[f"Reihe {rowNumber} Spalte 4: Soll-Entgelt \(ungerundet\)"] = employee["regularSalaryBeforeTax"]
             data_dict[f"Reihe {rowNumber} Spalte 5: Ist-Entgelt \(ungerundet\)"] = employee["currentSalaryBeforeTax"]
             data_dict[f"Reihe {rowNumber} Spalte 6: Lohnsteuerklasse"] = employee["taxClass"]
             data_dict[f"Reihe {rowNumber} Spalte 6: Leistungssatz 1 oder 2"] = leistungsSatz
             data_dict[f"Reihe {rowNumber} Spalte 7: Rechnerischer Leistungssatz für das Soll-Entgelt \(Spalte 4\) lt. Tabelle"] = employee["regularSalaryAfterTax"]
             data_dict[f"Reihe {rowNumber} Spalte 8: Rechnerischer Leistungssatz für das Ist-Entgelt \(Spalte 5\) lt. Tabelle"] = employee["currentSalaryAfterTax"]
-            # data_dict[f"Reihe {rowNumber} Spalte 9: Durchschnittliche Leistung pro Stunde \(Spalte 7 ./. Spalte 8: Insgesamtstunden aus Spalte 3\)"] = employee[""]
-            # data_dict[f"Reihe {rowNumber} Spalte 10: Auszuzahlendes Kug \(Spalte 7 ./. Spalte 8\) oder Kug-Stunden Spalte 3 x durchschnittliche Leistung \(Spalte 9\)"] = employee[""]
-            
+            #TODO data_dict[f"Reihe {rowNumber} Spalte 9: Durchschnittliche Leistung pro Stunde \(Spalte 7 ./. Spalte 8: Insgesamtstunden aus Spalte 3\)"] = employee[""]
+            data_dict[f"Reihe {rowNumber} Spalte 10: Auszuzahlendes Kug \(Spalte 7 ./. Spalte 8\) oder Kug-Stunden Spalte 3 x durchschnittliche Leistung \(Spalte 9\)"] = kug   
 
         template_pdf = pdfrw.PdfReader(TEMPLATE_PATH)
 
