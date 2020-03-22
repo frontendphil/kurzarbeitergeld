@@ -26,7 +26,7 @@ function App() {
       <Summary formData={formData} />
 
       {
-        pdfLink != null && <a href={pdfLink} download="true">Download PDF</a>
+        pdfLink != null && <a href={pdfLink} download="antrag-kug.pdf">Download PDF</a>
       }
       <Submit formData={formData} onSuccess={ (pdfBlob) => {
         const objectURL = URL.createObjectURL(pdfBlob);
