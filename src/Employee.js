@@ -1,53 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import AfterTaxValue, { calculateValueAfterTax } from "./AfterTaxValue";
+import AfterTaxValue from "./AfterTaxValue";
+import { updateEmployee, useDispatch, useEmployee } from "./AppContext";
 import Select from "./Select";
 import TextInput from "./TextInput";
 
-function Employee({ value, onChange }) {
-  useEffect(() => {
-    const currentSalaryAfterTax = calculateValueAfterTax(
-      value.currentSalaryBeforeTax,
-      value.hasChildren,
-      value.taxClass,
-      false
-    );
-
-    if (value.currentSalaryAfterTax !== currentSalaryAfterTax) {
-      onChange({
-        ...value,
-
-        currentSalaryAfterTax: calculateValueAfterTax(
-          value.currentSalaryBeforeTax,
-          value.hasChildren,
-          value.taxClass,
-          false
-        )
-      });
-    }
-  }, [onChange, value]);
-
-  useEffect(() => {
-    const regularSalaryAfterTax = calculateValueAfterTax(
-      value.regularSalaryBeforeTax,
-      value.hasChildren,
-      value.taxClass,
-      false
-    );
-
-    if (value.regularSalaryAfterTax !== regularSalaryAfterTax) {
-      onChange({
-        ...value,
-
-        regularSalaryAfterTax: calculateValueAfterTax(
-          value.regularSalaryBeforeTax,
-          value.hasChildren,
-          value.taxClass,
-          false
-        )
-      });
-    }
-  }, [onChange, value]);
+function Employee({ index }) {
+  const {
+    name,
+    insuranceNumber,
+    taxClass,
+    hasChildren,
+    lostHours,
+    regularSalaryBeforeTax,
+    currentSalaryBeforeTax
+  } = useEmployee(index);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -56,27 +24,19 @@ function Employee({ value, onChange }) {
           <div className="mr-4 flex-1">
             <TextInput
               label="Vor- und Nachname"
-              value={value.name}
-              onComplete={name =>
-                onChange({
-                  ...value,
-
-                  name
-                })
-              }
+              value={name}
+              onComplete={name => dispatch(updateEmployee(index, "name", name))}
             />
           </div>
 
           <div className="flex-1">
             <TextInput
               label="Versicherungsnummer"
-              value={value.insuranceNumber}
+              value={insuranceNumber}
               onComplete={insuranceNumber =>
-                onChange({
-                  ...value,
-
-                  insuranceNumber
-                })
+                dispatch(
+                  updateEmployee(index, "insuranceNumber", insuranceNumber)
+                )
               }
             />
           </div>
@@ -84,13 +44,10 @@ function Employee({ value, onChange }) {
       </td>
       <td className="p-2 border">
         <Select
-          value={value.taxClass}
-          onChange={({ target }) => {
-            onChange({
-              ...value,
-              taxClass: target.value
-            });
-          }}
+          value={taxClass}
+          onChange={({ target }) =>
+            dispatch(updateEmployee(index, "taxClass", target.value))
+          }
         >
           <option value="1">I</option>
           <option value="2">II</option>
@@ -103,26 +60,18 @@ function Employee({ value, onChange }) {
       <td className="p-2 border">
         <input
           type="checkbox"
-          checked={value.hasChildren}
+          checked={hasChildren}
           onChange={({ target }) =>
-            onChange({
-              ...value,
-
-              hasChildren: target.checked
-            })
+            dispatch(updateEmployee(index, "hasChildren", target.checked))
           }
         />
       </td>
       <td className="p-2 border">
         <TextInput
           placeholder="Anzahl Stunden"
-          value={value.lostHours}
+          value={lostHours}
           onComplete={lostHours =>
-            onChange({
-              ...value,
-
-              lostHours
-            })
+            dispatch(updateEmployee(index, "lostHours", lostHours))
           }
         />
       </td>
@@ -130,21 +79,23 @@ function Employee({ value, onChange }) {
         <div className="mb-4">
           <TextInput
             label="Brutto"
-            value={value.regularSalaryBeforeTax}
+            value={regularSalaryBeforeTax}
             onComplete={regularSalaryBeforeTax =>
-              onChange({
-                ...value,
-
-                regularSalaryBeforeTax
-              })
+              dispatch(
+                updateEmployee(
+                  index,
+                  "regularSalaryBeforeTax",
+                  regularSalaryBeforeTax
+                )
+              )
             }
           />
         </div>
 
         <AfterTaxValue
-          beforeTax={value.regularSalaryBeforeTax}
-          taxClass={value.taxClass}
-          hasChildren={value.hasChildren}
+          beforeTax={regularSalaryBeforeTax}
+          taxClass={taxClass}
+          hasChildren={hasChildren}
           isNewState={false}
         />
       </td>
@@ -152,21 +103,23 @@ function Employee({ value, onChange }) {
         <div className="mb-4">
           <TextInput
             label="Brutto"
-            value={value.currentSalaryBeforeTax}
+            value={currentSalaryBeforeTax}
             onComplete={currentSalaryBeforeTax =>
-              onChange({
-                ...value,
-
-                currentSalaryBeforeTax
-              })
+              dispatch(
+                updateEmployee(
+                  index,
+                  "currentSalaryBeforeTax",
+                  currentSalaryBeforeTax
+                )
+              )
             }
           />
         </div>
 
         <AfterTaxValue
-          beforeTax={value.currentSalaryBeforeTax}
-          taxClass={value.taxClass}
-          hasChildren={value.hasChildren}
+          beforeTax={currentSalaryBeforeTax}
+          taxClass={taxClass}
+          hasChildren={hasChildren}
           isNewState={false}
         />
       </td>

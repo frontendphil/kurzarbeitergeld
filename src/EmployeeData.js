@@ -1,30 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-import {
-  addEmployee,
-  updateEmployee,
-  useDispatch,
-  useEmployeeData
-} from "./AppContext";
+import { addEmployee, useDispatch, useEmployeeData } from "./AppContext";
 import Card from "./Card";
 import Employee from "./Employee";
-
-const defaultEmployee = {
-  name: "",
-  insuranceNumber: "",
-  taxClass: 1,
-  hasChildren: false,
-  lostHours: "",
-  regularSalaryBeforeTax: "",
-  regularSalaryAfterTax: "",
-  currentSalaryBeforeTax: "",
-  currentSalaryAfterTax: ""
-};
 
 function EmployeeData({ onStateChange }) {
   const dispatch = useDispatch();
   const employees = useEmployeeData();
-  const [currentEmployee, setCurrentEmployee] = useState(defaultEmployee);
 
   return (
     <Card title="Mitarbeiterdaten">
@@ -42,29 +24,16 @@ function EmployeeData({ onStateChange }) {
         <tbody>
           {employees.map((employee, index) => (
             <tr key={index} className={index % 2 !== 0 ? "bg-gray-100" : ""}>
-              <Employee
-                value={employee}
-                onChange={changedEmployee =>
-                  dispatch(updateEmployee(index, changedEmployee))
-                }
-              />
+              <Employee index={index} />
             </tr>
           ))}
-
-          <tr className={employees.length % 2 !== 0 ? "bg-gray-100" : ""}>
-            <Employee value={currentEmployee} onChange={setCurrentEmployee} />
-          </tr>
         </tbody>
       </table>
 
       <div className="mt-8 mb-2 flex justify-end">
         <button
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-          onClick={() => {
-            dispatch(addEmployee(currentEmployee));
-
-            setCurrentEmployee(defaultEmployee);
-          }}
+          onClick={() => dispatch(addEmployee())}
         >
           Zeile hinzufügen
         </button>

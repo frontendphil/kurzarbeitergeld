@@ -1,5 +1,19 @@
 import React, { createContext, useContext, useReducer } from "react";
 
+import { calculateValueAfterTax } from "./AfterTaxValue";
+
+const defaultEmployee = {
+  name: "",
+  insuranceNumber: "",
+  taxClass: 1,
+  hasChildren: false,
+  lostHours: "",
+  regularSalaryBeforeTax: "",
+  regularSalaryAfterTax: "",
+  currentSalaryBeforeTax: "",
+  currentSalaryAfterTax: ""
+};
+
 const defaultAppContext = {
   general: {
     name: "",
@@ -9,7 +23,7 @@ const defaultAppContext = {
     email: "",
     city: ""
   },
-  employees: []
+  employees: [defaultEmployee]
 };
 
 const AppContext = createContext([
@@ -29,6 +43,12 @@ export const useEmployeeData = () => {
   const [{ employees }] = useContext(AppContext);
 
   return employees;
+};
+
+export const useEmployee = index => {
+  const employees = useEmployeeData();
+
+  return employees[index];
 };
 
 export const useDispatch = () => {
@@ -60,9 +80,9 @@ export const updateBankDetails = bankDetails => ({
   payload: { bankDetails }
 });
 
-export const updateEmployee = (index, employee) => ({
+export const updateEmployee = (index, field, value) => ({
   type: "UPDATE_EMPLOYEE",
-  payload: { index, employee }
+  payload: { index, field, value }
 });
 
 export const addEmployee = employee => ({
@@ -99,11 +119,64 @@ const appReducer = (state, action) => {
     }
 
     case "UPDATE_EMPLOYEE": {
-      const { index, employee } = action.payload;
+      const { index, field, value } = action.payload;
+
+      const employee = state.employees[index];
+
+      let updatedEmployee = {
+        ...employee,
+
+        [field]: value
+      };
+
+      if (field === "currentSalaryBeforeTax") {
+        updatedEmployee = {
+          ...updatedEmployee,
+
+          currentSalaryAfterTax: calculateValueAfterTax(
+            value,
+            employee.hasChildren,
+            employee.taxClass,
+            false
+          )
+        };
+      }
+
+      if (field === "regularSalaryBeforeTax") {
+        updatedEmployee = {
+          ...updatedEmployee,
+
+          regularSalaryAfterTax: calculateValueAfterTax(
+            value,
+            employee.hasChildren,
+            employee.taxClass,
+            false
+          )
+        };
+      }
+
+      if (field === "taxClass" || field === "hasChildren") {
+        updatedEmployee = {
+          ...updatedEmployee,
+
+          currentSalaryAfterTax: calculateValueAfterTax(
+            employee.currentSalaryBeforeTax,
+            employee.hasChildren,
+            employee.taxClass,
+            false
+          ),
+          regularSalaryAfterTax: calculateValueAfterTax(
+            employee.regularSalaryBeforeTax,
+            employee.hasChildren,
+            employee.taxClass,
+            false
+          )
+        };
+      }
 
       const employees = [
         ...state.employees.slice(0, index),
-        employee,
+        updatedEmployee,
         ...state.employees.slice(index + 1)
       ];
 
@@ -115,12 +188,10 @@ const appReducer = (state, action) => {
     }
 
     case "ADD_EMPLOYEE": {
-      const { employee } = action.payload;
-
       return {
         ...state,
 
-        employees: [...state.employees, employee]
+        employees: [...state.employees, defaultEmployee]
       };
     }
 
