@@ -85,11 +85,6 @@ export const updateEmployee = (index, field, value) => ({
   payload: { index, field, value }
 });
 
-export const addEmployee = employee => ({
-  type: "ADD_EMPLOYEE",
-  payload: { employee }
-});
-
 const appReducer = (state, action) => {
   switch (action.type) {
     case "SET_GENERAL_FIELD": {
@@ -183,15 +178,10 @@ const appReducer = (state, action) => {
       return {
         ...state,
 
-        employees
-      };
-    }
-
-    case "ADD_EMPLOYEE": {
-      return {
-        ...state,
-
-        employees: [...state.employees, defaultEmployee]
+        employees:
+          index === employees.length - 1
+            ? [...employees, defaultEmployee]
+            : employees
       };
     }
 

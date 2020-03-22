@@ -1,11 +1,10 @@
 import React from "react";
 
-import { addEmployee, useDispatch, useEmployeeData } from "./AppContext";
+import { useEmployeeData } from "./AppContext";
 import Card from "./Card";
 import Employee from "./Employee";
 
 function EmployeeData({ onStateChange }) {
-  const dispatch = useDispatch();
   const employees = useEmployeeData();
 
   return (
@@ -29,15 +28,6 @@ function EmployeeData({ onStateChange }) {
           ))}
         </tbody>
       </table>
-
-      <div className="mt-8 mb-2 flex justify-end">
-        <button
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-          onClick={() => dispatch(addEmployee())}
-        >
-          Zeile hinzufügen
-        </button>
-      </div>
     </Card>
   );
 }

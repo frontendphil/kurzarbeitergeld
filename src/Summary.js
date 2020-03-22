@@ -33,21 +33,28 @@ function Summary() {
 
   return (
     <Card title="Zusammenfassung">
-      <div className="mb-4">
+      <div className="grid grid-cols-4 gap-4">
+        <TextInput
+          inline
+          disabled
+          label="Gesamtzahl der Beschäftigten"
+          value={`${employees.length - 1}`}
+        />
+
         <TextInput
           inline
           disabled
           label="Summe Soll"
           value={`${regularSalary} €`}
         />
-      </div>
 
-      <TextInput
-        inline
-        disabled
-        label="Summe Ist"
-        value={`${currentSalary} €`}
-      />
+        <TextInput
+          inline
+          disabled
+          label="Summe Ist"
+          value={`${currentSalary} €`}
+        />
+      </div>
     </Card>
   );
 }
