@@ -285,7 +285,9 @@ const exampleReducer = (state, action) => {
             PLZ: "91522",
             Ort: "Ansbach"
           }
-        }
+        },
+
+        employees: [phil, daniel, peter, defaultEmployee]
       };
     }
 
@@ -293,6 +295,42 @@ const exampleReducer = (state, action) => {
       return state;
     }
   }
+};
+
+const phil = {
+  name: "Philipp Giese",
+  insuranceNumber: "VD-123456789",
+  taxClass: "3",
+  hasChildren: true,
+  lostHours: 20,
+  regularSalaryBeforeTax: 3500,
+  regularSalaryAfterTax: calculateValueAfterTax(3500, true, "3", false),
+  currentSalaryBeforeTax: 1500,
+  currentSalaryAfterTax: calculateValueAfterTax(1500, true, "3", false)
+};
+
+const daniel = {
+  name: "Daniel Moritz",
+  insuranceNumber: "VD-234567891",
+  taxClass: "4",
+  hasChildren: false,
+  lostHours: 20,
+  regularSalaryBeforeTax: 3200,
+  regularSalaryAfterTax: calculateValueAfterTax(3200, false, "4", false),
+  currentSalaryBeforeTax: 1300,
+  currentSalaryAfterTax: calculateValueAfterTax(1300, false, "4", false)
+};
+
+const peter = {
+  name: "Peter Retzlaff",
+  insuranceNumber: "VD-345678912",
+  taxClass: "1",
+  hasChildren: false,
+  lostHours: 20,
+  regularSalaryBeforeTax: 4000,
+  regularSalaryAfterTax: calculateValueAfterTax(4000, false, "1", false),
+  currentSalaryBeforeTax: 1700,
+  currentSalaryAfterTax: calculateValueAfterTax(1700, false, "1", false)
 };
 
 const REQUIRED_ERROR = "Bitte geben Sie einen Wert ein";
