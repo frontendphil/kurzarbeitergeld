@@ -53,8 +53,8 @@ function TextInput(
         }}
       />
 
-      {hint && <p class="text-gray-600 text-xs italic mt-2">{hint}</p>}
-      {error && <p class="text-red-500 text-xs italic mt-2">{error}</p>}
+      {hint && <p className="text-gray-600 text-xs italic mt-2">{hint}</p>}
+      {error && <p className="text-red-500 text-xs italic mt-2">{error}</p>}
     </div>
   );
 }
