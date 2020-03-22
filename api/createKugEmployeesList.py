@@ -26,36 +26,29 @@ class handler(BaseHTTPRequestHandler):
         #TODO map requestBody to data_dict
         # requestBody = {
         #     "employees": [
-        #         {
-        #             "currentSalaryAfterTax": "",
-        #             "currentSalaryBeforeTax": "",
-        #             "hasChildren": False,
-        #             "insuranceNumber": "",
-        #             "lostHours": "",
-        #             "name": "",
-        #             "regularSalaryAfterTax": "",
-        #             "regularSalaryBeforeTax": "",
-        #             "taxClass": 1
-        #         }
-        #     ],
-        #     "general": {
-        #         "agency": {
-        #             "AA Bezirk": "Potsdam",
-        #             "Anschrift": "Horstweg 102-108",
-        #             "Bezeichnung": "Jobcenter Potsdam",
-        #             "Ort": "Potsdam",
-        #             "PLZ": "14478"
-        #         },
-        #         "bankName": "",
-        #         "bic": "",
-        #         "city": "Berlin",
-        #         "email": "",
-        #         "iban": "",
-        #         "name": "Test Corp.",
-        #         "streetName": "Huh",
-        #         "streetNumber": "32",
-        #         "zipCode": "43528"
+        #     {
+        #         "currentSalaryAfterTax": "675,36",
+        #         "currentSalaryBeforeTax": "1.250,00",
+        #         "hasChildren": False,
+        #         "insuranceNumber": "VD-323850234923",
+        #         "lostHours": "10",
+        #         "name": "Mustermann, Max",
+        #         "regularSalaryAfterTax": "1.295,11",
+        #         "regularSalaryBeforeTax": "2.500,00",
+        #         "taxClass": 1
+        #     },
+        #     {
+        #         "currentSalaryAfterTax": "675,36",
+        #         "currentSalaryBeforeTax": "1.250,00",
+        #         "hasChildren": False,
+        #         "insuranceNumber": "VD-323850233333",
+        #         "lostHours": "10",
+        #         "name": "Musterfrau, Maxi",
+        #         "regularSalaryAfterTax": "1.295,11",
+        #         "regularSalaryBeforeTax": "2.500,00",
+        #         "taxClass": 1
         #     }
+        #   ]
         # }        
 
         data_dict = {
@@ -66,6 +59,10 @@ class handler(BaseHTTPRequestHandler):
 
         for employeeNumber, employee in enumerate(requestBody["employees"], start=1):
             rowNumber = employeeNumber + 2
+            if employee["hasChildren"]:
+                leistungsSatz = 1
+            else:
+                leistungsSatz = 2
             data_dict[f"Reihe {rowNumber} Spalte 1: Hier wird automatisch die laufende Nummer eingetragen"] = employeeNumber
             data_dict[f"Reihe {rowNumber} Spalte 2: Name, Vorname"] = employee["name"]
             data_dict[f"Reihe {rowNumber} Spalte 2: Versicherungsnummer 12-stellig"] = employee["insuranceNumber"]
@@ -77,7 +74,7 @@ class handler(BaseHTTPRequestHandler):
             data_dict[f"Reihe {rowNumber} Spalte 4: Soll-Entgelt \(ungerundet\)"] = employee["regularSalaryBeforeTax"]
             data_dict[f"Reihe {rowNumber} Spalte 5: Ist-Entgelt \(ungerundet\)"] = employee["currentSalaryBeforeTax"]
             data_dict[f"Reihe {rowNumber} Spalte 6: Lohnsteuerklasse"] = employee["taxClass"]
-            # data_dict[f"Reihe {rowNumber} Spalte 6: Leistungssatz 1 oder 2"] = employee[""]
+            data_dict[f"Reihe {rowNumber} Spalte 6: Leistungssatz 1 oder 2"] = leistungsSatz
             data_dict[f"Reihe {rowNumber} Spalte 7: Rechnerischer Leistungssatz für das Soll-Entgelt \(Spalte 4\) lt. Tabelle"] = employee["regularSalaryAfterTax"]
             data_dict[f"Reihe {rowNumber} Spalte 8: Rechnerischer Leistungssatz für das Ist-Entgelt \(Spalte 5\) lt. Tabelle"] = employee["currentSalaryAfterTax"]
             # data_dict[f"Reihe {rowNumber} Spalte 9: Durchschnittliche Leistung pro Stunde \(Spalte 7 ./. Spalte 8: Insgesamtstunden aus Spalte 3\)"] = employee[""]

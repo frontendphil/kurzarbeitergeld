@@ -26,19 +26,6 @@ class handler(BaseHTTPRequestHandler):
 
         #TODO finalize requestBody mapping
         # requestBody = {
-        #     "employees": [
-        #         {
-        #             "currentSalaryAfterTax": "",
-        #             "currentSalaryBeforeTax": "",
-        #             "hasChildren": False,
-        #             "insuranceNumber": "",
-        #             "lostHours": "",
-        #             "name": "",
-        #             "regularSalaryAfterTax": "",
-        #             "regularSalaryBeforeTax": "",
-        #             "taxClass": 1
-        #         }
-        #     ],
         #     "general": {
         #         "agency": {
         #             "AA Bezirk": "Potsdam",
