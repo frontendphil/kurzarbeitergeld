@@ -8,41 +8,6 @@ import json
 TEMPLATE_PATH = './pdf-templates/antrag-kug.pdf'
 OUTPUT_PATH = 'kug.pdf'
 
-
-# requestBody = {
-#     "employees": [
-#         {
-#             "currentSalaryAfterTax": "",
-#             "currentSalaryBeforeTax": "",
-#             "hasChildren": False,
-#             "insuranceNumber": "",
-#             "lostHours": "",
-#             "name": "",
-#             "regularSalaryAfterTax": "",
-#             "regularSalaryBeforeTax": "",
-#             "taxClass": 1
-#         }
-#     ],
-#     "general": {
-#         "agency": {
-#             "AA Bezirk": "Potsdam",
-#             "Anschrift": "Horstweg 102-108",
-#             "Bezeichnung": "Jobcenter Potsdam",
-#             "Ort": "Potsdam",
-#             "PLZ": "14478"
-#         },
-#         "bankName": "",
-#         "bic": "",
-#         "city": "Berlin",
-#         "email": "",
-#         "iban": "",
-#         "name": "Test Corp.",
-#         "streetName": "Huh",
-#         "streetNumber": "32",
-#         "zipCode": "43528"
-#     }
-# }
-
 ANNOT_KEY = '/Annots'
 ANNOT_FIELD_KEY = '/TU'
 ANNOT_VAL_KEY = '/V'
@@ -113,3 +78,15 @@ class handler(BaseHTTPRequestHandler):
         pdfrw.PdfWriter().write(self.wfile, template_pdf)
 
         return
+
+    def do_OPTIONS(self) :
+
+        origin = self.headers.get('origin')
+
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", origin)
+        self.send_header("Access-Control-Allow-Methods", "GET, POST")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
+        self.wfile.write(bytes("\n", 'utf-8'))
